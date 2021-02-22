@@ -1,0 +1,212 @@
+:root{
+    --backgound-body-color:#EDEEF0;
+    --icon-color:#000;
+}
+h1{
+    color:white;
+    font-family: 'Open Sans';
+}
+div{
+    font-family: 'Open Sans';
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("/static/fonts/opensans.ttf");
+}
+
+.iconColor{
+    color:var(--icon-color);
+}
+.scrollHidden::-webkit-scrollbar { width: 0 !important }
+.scrollHidden { -ms-overflow-style: none; }
+.scrollHidden { overflow: -moz-scrollbars-none; }
+
+body{
+    background: var(--backgound-body-color);
+    color: #1c1e21;
+    direction: ltr;
+    margin: 0;
+    padding: 0px;
+    unicode-bidi: embed;
+}
+a {
+    color: #000 !important;
+    text-decoration: none
+}
+.newsOnStartpage:hover {
+    border-radius: 5px;
+    background-color: gray;
+
+}
+.tabs{
+    cursor: pointer;
+    padding: 5px;
+    background-color: #fff;
+
+}
+.tags{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:200px;
+    margin-bottom:3px;
+    color:white;
+    font-size:14px;
+    background-color:red;
+    display:inline-block;
+    padding:2px;
+    border-radius:5px;
+    margin-right:5px;
+}
+.tabs:hover {
+    border-radius: 5px;
+    background-color: #dbdb;
+
+}
+.noselect {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+
+.hdblock{
+    max-width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.button2{
+    font-family: Poppins,sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    font-size: 17px;
+    color: #fff;
+    display: inline-block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    padding: 7px;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    background-color: #0A77B7;
+    border-radius: 15px;
+    border: 3px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,.25);
+    transition: transform .3s cubic-bezier(.25,.1,.25,1),box-shadow .3s cubic-bezier(.25,.1,.25,1);
+}
+input {
+
+    font-size: 17px;
+    padding: 6px 6px 4px 10px;
+    border: 1px solid #cecece;
+    background: #fff;
+    border-radius: 15px;
+    outline: none;
+    -webkit-box-shadow: 0px 2px 8px -3px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 2px 8px -3px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 2px 8px -3px rgba(34, 60, 80, 0.2);
+
+}
+.centre{
+    max-width: 1000px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.hdblock1{
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.parent{
+    width: 100%;
+    position: fixed;
+    background: #fff;
+    height: 50px;
+    z-index: 1000;
+}
+
+html {
+    height: 100%;
+}
+
+.parent2{
+    max-width:1800px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.loader {
+    position: absolute;
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    perspective: 800px;
+}
+
+.inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.inner.one {
+    left: 0%;
+    top: 0%;
+    animation: rotate-one 1s linear infinite;
+    border-bottom: 3px solid #000;
+}
+
+.inner.two {
+    right: 0%;
+    top: 0%;
+    animation: rotate-two 1s linear infinite;
+    border-right: 3px solid #000;
+}
+
+.inner.three {
+    right: 0%;
+    bottom: 0%;
+    animation: rotate-three 1s linear infinite;
+    border-top: 3px solid #000;
+}
+
+@keyframes rotate-one {
+    0% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-two {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-three {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}

@@ -7,9 +7,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@vkontakte/icons": "^1.79.0",
+    "isomorphic-unfetch": "^3.1.0",
     "next": "latest",
+    "rc-banner-anim": "^2.4.5",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-awesome-slider": "^4.1.0",
+    "react-dom": "^16.7.0",
+    "react-id-swiper": "^4.0.0",
+    "swiper": "^6.4.15"
   },
   "license": "MIT"
 }
