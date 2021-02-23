@@ -1,6 +1,7 @@
 # Новостной сайт
 
 ```git clone https://github.com/FineBot/Site.git```
+
 ```npm install```
 
 ## Deploy your own
