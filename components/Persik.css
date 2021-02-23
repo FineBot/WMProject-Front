@@ -3,20 +3,35 @@
     --icon-color:#000;
 }
 h1{
-    color:white;
     font-family: 'Open Sans';
 }
 div{
     font-family: 'Open Sans';
 }
-
+.HeaderTitle{
+    font-family: 'Rubik Medium';
+}
 @font-face {
     font-family: "Open Sans";
     src: url("/static/fonts/opensans.ttf");
 }
+@font-face {
+    font-family: "Rubik Medium";
+    src: url("/static/fonts/Rubik-Light.ttf");
+}
+.leftmenu{
+    -webkit-box-shadow: 5px 1px 8px -6px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 5px 1px 8px -6px rgba(34, 60, 80, 0.2);
+    box-shadow: 5px 1px 8px -6px rgba(34, 60, 80, 0.2);
+    background-color: #fff;
+    z-index: 9999;
+}
 
 .iconColor{
     color:var(--icon-color);
+}
+.iconColor:hover{
+    color:cadetblue;
 }
 .scrollHidden::-webkit-scrollbar { width: 0 !important }
 .scrollHidden { -ms-overflow-style: none; }
@@ -132,7 +147,7 @@ input {
     position: fixed;
     background: #fff;
     height: 50px;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 html {
@@ -209,4 +224,130 @@ html {
     100% {
         transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
     }
+}
+.adminparent{
+    padding-left: 205px;
+}
+.Madminparent{
+
+}
+.adminGlavPage{
+    margin-top:40vh;
+    transition-property: all;
+    transition: all 0.2s;
+}
+.adminGlavPage1{
+    margin-top:20vh;
+    transition-property: all;
+    transition: all 0.2s;
+}
+.RichEditor-root {
+    background: #fff;
+    border: 1px solid #ddd;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.RichEditor-editor {
+    cursor: text;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
+    margin: 0 -15px -15px;
+    padding: 15px;
+}
+
+.RichEditor-editor .public-DraftEditor-content {
+    min-height: 100px;
+}
+
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+    display: none;
+}
+
+.RichEditor-editor .RichEditor-blockquote {
+    border-left: 5px solid #eee;
+    color: #666;
+    font-family: 'Hoefler Text', 'Georgia', serif;
+    font-style: italic;
+    margin: 16px 0;
+    padding: 10px 20px;
+}
+
+.RichEditor-editor .public-DraftStyleDefault-pre {
+    background-color: rgba(0, 0, 0, 0.05);
+    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-size: 16px;
+    padding: 20px;
+}
+
+.RichEditor-controls {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+    user-select: none;
+}
+
+.RichEditor-styleButton {
+    color: #999;
+    cursor: pointer;
+    margin-right: 16px;
+    padding: 2px 0;
+    display: inline-block;
+}
+
+.RichEditor-activeButton {
+    color: #5890ff;
+}
+.RichEditor img{
+    width: 500px;
+}
+
+blockquote {
+    border-left: 5px solid #eee;
+    color: #666;
+    font-family: 'Hoefler Text', 'Georgia', serif;
+    font-style: italic;
+    margin: 16px 0;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+code{
+    background-color: rgba(0, 0, 0, 0.05);
+    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-size: 17px;
+    padding: 20px;
+}
+mono{
+    background-color: rgba(0, 0, 0, 0.05);
+    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-size: 17px;
+    padding: 3px;
+}
+ul{
+    padding-bottom: 15px;
+    font-size: 17px;
+
+}
+ol{
+    padding-bottom: 15px;
+    font-size: 17px;
+}
+figure{
+    width: 100%;
+    text-align: center;
+}
+img{
+    max-height: 300px;
+}
+p{
+    font-size: 17px;
+    padding: 0px;
+    margin: 0px;
 }

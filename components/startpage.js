@@ -96,7 +96,7 @@ export default class Persik extends React.Component {
                                                             </div>
 
                                                             <div style={{marginLeft:"50px",marginBottom:"20px",maxWidth:"800px"}}>
-                                                                <h1 style={{fontSize:"40px"}}>{this.state.data.result.main[0].title}</h1>
+                                                                <h1 style={{fontSize:"40px",color:"white"}}>{this.state.data.result.main[0].title}</h1>
                                                             </div>
                                                         </div>
                                                     </td>

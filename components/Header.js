@@ -1,11 +1,11 @@
 import React from 'react';
 import Icon28User from '@vkontakte/icons/dist/28/user_outline';
-
+import { Icon28SearchOutline } from '@vkontakte/icons';
 
 
 class Persikf extends React.Component {
 
-	constructor() {
+	constructor(props) {
 		super(props);
 		this.state={
 			active:["","",""]
@@ -39,24 +39,33 @@ class Persikf extends React.Component {
 								</td>
 								<td align={"left"}>
 									<div style={{display:"flex"}}>
-										<a target={"_blank"} href={"/tags/main"} className={"tabs"}>
+										<a  href={"/tags/main"} className={"tabs"}>
 											Главное
 										</a>
 										<div style={{backgroundColor:"#dbdbdb",width:"1px",marginLeft:"5px",marginRight:"5px"}}></div>
-										<a target={"_blank"} href={"/tags/Животные"} className={"tabs"}>
+										<a href={"/tags/Животные"} className={"tabs"}>
 											Животные
 										</a>
 										<div style={{backgroundColor:"#dbdbdb",width:"1px",marginLeft:"5px",marginRight:"5px"}}></div>
-										<a target={"_blank"} href={"/tags/Политика"} className={"tabs"}>
+										<a  href={"/tags/Политика"} className={"tabs"}>
 											Политика
 										</a>
 									</div>
 								</td>
-								<td align="right"><div>
-									<a style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none", paddingRight:"10px"}} href="/login">
+								<td width={28} align="right">
+									<a style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none"}} href="/search">
+										<Icon28SearchOutline style={{paddingRight:"10px"}} className={"iconColor"}/>
+
+									</a>
+
+								</td>
+								<td width={28} align="right">
+
+									<a style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none"}} href="/admin">
 										<Icon28User className={"iconColor"}/>
 									</a>
-								</div></td>
+								</td>
+
 							</tr>
 						</table>
 					</div>
