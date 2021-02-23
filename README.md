@@ -1,6 +1,7 @@
-# Google AMP
+# Новостной сайт
 
-This example shows how to create AMP pages using Next.js and the AMP feature. It shows a normal page (non-AMP), an AMP only page, and a hybrid AMP page.
+```git clone https://github.com/FineBot/Site.git```
+```npm install```
 
 ## Deploy your own
 
