@@ -11,24 +11,49 @@ function to0(t){
     }
 }
 
+var scrollWaiting=false
+var page=0
+
+
+
 export default class Persik extends React.Component {
 
     constructor(props){
         super(props);
         this.state={
             data:null,
+            loading:false,
         }
 
+    }
+
+
+    componentDidMount() {
+            document.addEventListener("scroll",()=>this.scroll())
+            this.load()
 
     }
-    componentDidMount() {
-        fetch("http://localhost:15234/getNews",{method:"POST"}).then(
+    load(){
+        const data1 = new URLSearchParams();
+        data1.append("page",page)
+        fetch("http://localhost:15234/getNews",{method:"POST",body:data1}).then(
             (response)=>{
                 return response.json()
             }
         )
             .then((data)=>{
-                this.setState({data:data})
+                if(page==0){
+                    this.setState({data:data})
+                }else{
+                    var loadedData=this.state.data
+                    for (var i =0;i<data['result']['all'].length;i++){
+                        loadedData['result']['all'].push(data['result']['all'][i])
+                    }
+
+                    console.log(loadedData)
+                    this.setState({data:loadedData,loading:false})
+
+                }
 
             })
             .catch(e=>{
@@ -52,6 +77,28 @@ export default class Persik extends React.Component {
             result=day+"."+month+"."+year+", "+hours+":"+min
         }
         return result
+    }
+    scroll(){
+        var clientHeight = document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
+        var documentHeight = document.documentElement.scrollHeight ? document.documentElement.scrollHeight : document.body.scrollHeight;
+        var scrollTop = window.pageYOffset ? window.pageYOffset : (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+
+
+
+        if((documentHeight - clientHeight) <= scrollTop+700)
+        {
+            if(!scrollWaiting){
+                scrollWaiting=true
+                page++
+                this.setState({loading:true})
+                this.load()
+            }
+
+
+        }else{
+            scrollWaiting=false
+        }
+
     }
     render() {
 
@@ -176,7 +223,7 @@ export default class Persik extends React.Component {
 
                                                        <div  style={{padding:"5px",borderBottomRightRadius:"10px",borderBottomLeftRadius:"10px"}}>
                                                            <div style={{fontSize:"11px"}}>{this.getTime(e.publishedAt)}</div>
-                                                           {JSON.parse(this.state.data.result.main[i].tags).map((ef)=>{
+                                                           {JSON.parse(this.state.data.result.all[i].tags).map((ef)=>{
                                                                return (
                                                                    <div className={"tags"}>
                                                                        {ef}
@@ -195,11 +242,16 @@ export default class Persik extends React.Component {
                                        )
                                    })}
                                </div>
+
                            </div>
                         ):(null)}
 
                     </div>
-
+                    {this.state.loading?(<div className="loaderBottom">
+                        <div className="inner one"></div>
+                        <div className="inner two"></div>
+                        <div className="inner three"></div>
+                    </div>):(null)}
                 </div>
             </div>
        )

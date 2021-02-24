@@ -11,7 +11,8 @@ export const config = {
     amp: false,
 }
 
-
+var scrollWaiting=false
+var page=0
 export default class Persik extends React.Component {
 
     constructor(props){
@@ -23,11 +24,36 @@ export default class Persik extends React.Component {
             data:[],
             showmenu:false,
             parentClass:"adminparent",
+
         }
 
 
     }
+    scroll(){
+        var clientHeight = document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
+        var documentHeight = document.documentElement.scrollHeight ? document.documentElement.scrollHeight : document.body.scrollHeight;
+        var scrollTop = window.pageYOffset ? window.pageYOffset : (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+
+
+
+        if((documentHeight - clientHeight) <= scrollTop+500)
+        {
+            if(!scrollWaiting){
+                scrollWaiting=true
+                page++
+                this.setState({loading1:true})
+                this.load()
+            }
+
+
+        }else{
+            scrollWaiting=false
+        }
+
+    }
     componentDidMount() {
+        document.addEventListener("scroll",()=>this.scroll())
+
         if(!isMobile()){
             this.setState({showmenu:true})
 
@@ -35,6 +61,28 @@ export default class Persik extends React.Component {
             this.setState({parentClass:"Madminparent"})
 
         }
+    }
+    load(){
+        this.setState({loading1:true})
+        const data1 = new URLSearchParams();
+        data1.append("keywords",this.state.input)
+        data1.append("page",page)
+        fetch('http://127.0.0.1:15234/search',{method:"POST",body: data1})
+            .then(response=>response.json())
+            .then(data=>{
+                if("result" in data) {
+                    var loadedData = this.state.data
+                    for (var i = 0; i < data['result'].length; i++) {
+                        loadedData.push(data['result'][i])
+                    }
+                    this.setState({loading1: false})
+
+                }else{
+                    this.setState({loading1: false})
+
+                }
+
+            })
     }
     search(){
         this.setState({loading:true})
@@ -87,6 +135,7 @@ export default class Persik extends React.Component {
                                            }
                                        },500)
                                    }} style={{height:"30px",width:"95%",position:"sticky",top:"60px",zIndex:5}}/>
+                                   <div style={{fontSize:"14px",color:"gray"}}>Введите *, чтобы показать все статьи</div>
                                 {this.state.loading?(
                                        <div className="loader" style={{backgroundColor:"white"}}>
                                            <div className="inner one"></div>
@@ -103,6 +152,11 @@ export default class Persik extends React.Component {
                                     </div>):(<div>
 
                                         <InSearchNews admin={true} data={this.state.data}/>
+                                        {this.state.loading1?(<div className="loaderBottom">
+                                            <div className="inner one"></div>
+                                            <div className="inner two"></div>
+                                            <div className="inner three"></div>
+                                        </div>):(null)}
                                     </div>)}
                                 </div>
                             </div>

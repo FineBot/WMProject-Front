@@ -169,6 +169,16 @@ html {
     border-radius: 50%;
     perspective: 800px;
 }
+.loaderBottom {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    perspective: 800px;
+}
 
 .inner {
     position: absolute;
