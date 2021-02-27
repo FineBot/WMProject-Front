@@ -18,6 +18,11 @@ export default class Persik extends React.Component {
 
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+        if(nextProps.show){
+
+        }
+    }
 
 
     render() {

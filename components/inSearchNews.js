@@ -85,29 +85,29 @@ export default class Persik extends React.Component {
                        return(
                            <a target={"_blank"} href={url+e['id']}>
                                <div className={"tabs"} style={{marginBottom:"10px",borderRadius:"10px"}}>
-                                   <div style={{display:"flex"}}>
+                                   <div style={{display:"flex",height:"150px"}}>
                                        <div>
                                            <div style={{backgroundImage : "url("+e.coverImage+")",
                                                backgroundSize:"cover",
-                                               height: "200px",
-                                               width:"250px",
+                                               height:"150px",
+                                               width:"150px",
                                                backgroundPosition:"50% 50%",
                                                borderRadius:"10px",
                                                alignItems: 'flex-end',
                                                justifyContent: 'left',}}/>
                                        </div>
                                        <div style={{width:"100%",textAlign:"left",marginLeft:"10px",marginTop:"-15px"}}>
-                                           <h2 style={{color:"black",marginBottom:"0px"}}>{e['title']}</h2>
+                                           <h2 style={{color:"black",marginBottom:"0px",whiteSpace:"pre-wrap"}}>{e['title']}</h2>
                                            <div style={{fontSize:"11px"}}>{this.getTime(e.publishedAt)}</div>
 
                                            {JSON.parse(e.tags).map((ef)=>{
                                                return (
-                                                   <div style={{color:"white",fontSize:"14px", backgroundColor:"red",display:"inline-block",padding:"2px",borderRadius:"5px",marginRight:"5px"}}>
+                                                   <div className={"tags"}>
                                                        {ef}
                                                    </div>
                                                )
                                            })}
-                                           <div style={{color:"black"}}>{e['description']}</div>
+                                           <div className={"inSearch"}>{e['description']}</div>
                                        </div>
                                    </div>
                                </div>

@@ -41,7 +41,48 @@ div{
     background-color: #dbdb;
 
 }
+blockquote {
+    border-left: 5px solid #eee;
+    color: #666;
+    font-family: 'Hoefler Text', 'Georgia', serif;
+    font-style: italic;
+    margin: 16px 0;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+code{
+    background-color: rgba(0, 0, 0, 0.05);
+    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-size: 17px;
+    padding: 20px;
+}
+mono{
+    background-color: rgba(0, 0, 0, 0.05);
+    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-size: 17px;
+    padding: 3px;
+}
+ul{
+    padding-bottom: 15px;
+    font-size: 17px;
 
+}
+ol{
+    padding-bottom: 15px;
+    font-size: 17px;
+}
+figure{
+    width: 100%;
+    text-align: center;
+}
+img{
+    max-height: 300px;
+}
+p{
+    font-size: 17px;
+    padding: 0px;
+    margin: 0px;
+}
 @font-face {
     font-family: "Open Sans"; /* Гарнитура шрифта */
     src: url("/static/fonts/opensans.ttf"); /* Путь к файлу со шрифтом */

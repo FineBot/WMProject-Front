@@ -24,7 +24,7 @@ div{
     -moz-box-shadow: 5px 1px 8px -6px rgba(34, 60, 80, 0.2);
     box-shadow: 5px 1px 8px -6px rgba(34, 60, 80, 0.2);
     background-color: #fff;
-    z-index: 9999;
+    z-index: 9000;
 }
 
 .iconColor{
@@ -74,6 +74,13 @@ a {
     border-radius:5px;
     margin-right:5px;
 }
+.inSearch{
+    white-space:pre-wrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color:black;
+    height: 60px;
+}
 .tabs:hover {
     border-radius: 5px;
     background-color: #dbdb;
@@ -116,7 +123,6 @@ a {
     transition: transform .3s cubic-bezier(.25,.1,.25,1),box-shadow .3s cubic-bezier(.25,.1,.25,1);
 }
 input {
-
     font-size: 17px;
     padding: 6px 6px 4px 10px;
     border: 1px solid #cecece;
@@ -128,6 +134,8 @@ input {
     box-shadow: 0px 2px 8px -3px rgba(34, 60, 80, 0.2);
 
 }
+
+
 .centre{
     max-width: 1000px;
     padding-left: 5px;
@@ -319,45 +327,17 @@ html {
     width: 500px;
 }
 
-blockquote {
-    border-left: 5px solid #eee;
-    color: #666;
-    font-family: 'Hoefler Text', 'Georgia', serif;
-    font-style: italic;
-    margin: 16px 0;
-    font-size: 20px;
-    padding: 10px 20px;
-}
-code{
-    background-color: rgba(0, 0, 0, 0.05);
-    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
-    font-size: 17px;
-    padding: 20px;
-}
-mono{
-    background-color: rgba(0, 0, 0, 0.05);
-    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
-    font-size: 17px;
-    padding: 3px;
-}
-ul{
-    padding-bottom: 15px;
-    font-size: 17px;
 
-}
-ol{
-    padding-bottom: 15px;
-    font-size: 17px;
-}
-figure{
-    width: 100%;
-    text-align: center;
-}
-img{
-    max-height: 300px;
-}
-p{
-    font-size: 17px;
-    padding: 0px;
-    margin: 0px;
-}
+
+
+.imageEditor .form-group{padding:0px;margin:0px;height: 30px;}
+.imageEditor input[type=file]{outline:0;opacity:0;pointer-events:none;user-select:none;height: 30px;}
+.imageEditor .label i,.imageEditor .label .title{color:grey;transition:200ms color}
+.imageEditor .label:hover i,.imageEditor .label:hover .title{color:#000}
+
+
+
+
+
+
+

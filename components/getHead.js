@@ -5,6 +5,7 @@ import React from "react";
 export function getHead(title,description,keywords) {
                 return (
                     <Head>
+                        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
                             {title === "" ? (<title>News Site</title>) : (<title>{title}</title>)}
                             <meta name="description" content={description}/>
                             {title === "" ? (<meta property="og:title" content={title}/>) : (

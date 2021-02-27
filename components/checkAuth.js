@@ -1,7 +1,8 @@
 'use strict';
 import React from 'react';
-import {getCookie} from "../components/other"
+import {getCookie,setCookie} from "../components/other"
 import {getHead} from "./getHead";
+import fetch from "isomorphic-unfetch";
 
 export const config = {
     amp: false,
@@ -24,11 +25,34 @@ export default class Persik extends React.Component {
         var token=getCookie("token")
         const url =  window.location.href
         const id = url.split("/")[4]
-        if(token==undefined && id!="login"){
-            window.location="/admin/login"
+        if(token==undefined){
+            if(id!=="login"){
+                window.location="/admin/login"
+
+            }else{
+                this.setState({token:token})
+                this.setState({view:true})
+            }
         }else{
             this.setState({token:token})
             this.setState({view:true})
+
+            var check=getCookie("checkToken")
+            if(check==undefined){
+                const data1 = new URLSearchParams();
+                data1.append("token",token)
+                fetch('http://127.0.0.1:15234/checkToken',{method:"POST",body: data1})
+                    .then(response=>response.json())
+                    .then(data=>{
+                        if("result" in data){
+                            setCookie("checkToken","ok",{'max-age': 60*15})
+                        }else{
+                            setCookie("token",{"max-age":-1})
+                            window.location="/admin/login"
+
+                        }
+                    })
+            }
         }
     }
     render() {

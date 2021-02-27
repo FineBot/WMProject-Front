@@ -4,13 +4,17 @@ import { EditorState, RichUtils,AtomicBlockUtils} from "draft-js";
 import {stateToHTML} from 'draft-js-export-html';
 import Editor  from "draft-js-plugins-editor";
 import createImagePlugin from "draft-js-image-plugin";
+import * as React from "react";
+import Chips, { Chip } from 'react-chips'
+import fetch from "isomorphic-unfetch";
+import {getCookie} from "./other";
 
 const imagePlugin = createImagePlugin();
 const plugins = [imagePlugin];
 export default class RichEditorExample extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {editorState: EditorState.createEmpty()};
+        this.state = {editorState: EditorState.createEmpty(),chips: []};
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => this.setState({editorState});
@@ -70,15 +74,38 @@ export default class RichEditorExample extends React.Component {
 
 
     }
+    checkFile1(e){
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+            this.setState({coverImage:reader.result})
+        }
+
+        reader.readAsDataURL(file)
+
+
+    }
+    onChipsChange = chips => {
+        this.setState({ chips });
+    }
     render() {
         const {editorState} = this.state;
         let options = {
             entityStyleFn: (entity) => {
                 const entityType = entity.get('type').toLowerCase();
+
                 if (entityType === 'image') {
                     const data = entity.getData();
                     return {
                         element: 'img',
+                        onClick:()=>{
+                            alert("F")
+                        },
                         attributes: {
                             src: data.src,
                         },
@@ -116,45 +143,194 @@ export default class RichEditorExample extends React.Component {
                 className += ' RichEditor-hidePlaceholder';
             }
         }
+        const theme = {
+            chipsContainer: {
+                display: "flex",
+                position: "relative",
+                border: "1px solid #cecece",
+                backgroundColor: '#fff',
+                fontSize: "17px",
+                marginLeft:"auto",
+                marginRight:"auto",
+                width:"80%",
+                minHeight:"25px",
+                alignItems: "center",
+                flexWrap: "wrap",
+                padding: "6px 6px 4px 10px",
+                borderRadius: 15,
+                ':focus': {
+                    border: "1px solid #aaa",
+                }
+            },
+            container:{
+                flex: 1,
+            },
+            containerOpen: {
 
+            },
+            input: {
+                border: "none",
+                background:"none",
+                fontSize: "17px",
+                marginLeft:"auto",
+                fontFamily: "Open Sans",
+                fontWeight: "none",
+                marginRight:"auto",
+                width:"100%",
+                minHeight:"15px",
+                alignItems: "center",
+                flexWrap: "wrap",
+                padding: "none",
+                boxShadow:"none",
+                webkitBoxShadow:"none",
+                marginTop:"-25px",
+
+            },
+            suggestionsContainer: {
+
+            },
+            suggestionsList: {
+                position: 'absolute',
+                border: '1px solid #ccc',
+                zIndex: 10,
+                left: 0,
+                top: '100%',
+                width: '100%',
+                backgroundColor: '#fff',
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+            },
+            suggestion: {
+                padding: '5px 15px'
+            },
+            suggestionHighlighted: {
+                background: '#ddd'
+            },
+            sectionContainer: {
+
+            },
+            sectionTitle: {
+
+            },
+        }
+        const chipTheme = {
+            chip: {
+                padding:"none",
+                paddingLeft: "5px",
+                paddingRight:"5px",
+
+                background: "#ccc",
+                margin:'none',
+                marginLeft: "2px",
+                borderRadius: 3,
+                cursor: 'default',
+            },
+            chipSelected: {
+                background: '#888',
+            },
+            chipRemove: {
+                fontWeight: "bold",
+                cursor: "pointer",
+                ':hover': {
+                    color: 'red',
+                }
+            }
+        }
         return (
-            <div className="RichEditor-root" >
-               <div style={{position:"sticky",top:"50px",backgroundColor:"white"}}>
-                       <div style={{height:"10px"}}></div>
-                       <BlockStyleControls
-                           editorState={editorState}
-                           onToggle={this.toggleBlockType}
-                       />
-                       <InlineStyleControls
-                           editorState={editorState}
-                           onToggle={this.toggleInlineStyle}
-                       />
-                   <div style={{backgroundColor:"#dbdbdb",height:"1px",paddingRight:"40px",paddingLeft:"40px"}}></div>
+            <div>
+                <div style={{width:"100%",textAlign:"center",marginBottom:"20px"}}>
+                    <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Заголовок</div>
+                    <input id={"title"} style={{width:"80%",fontSize:"17px",height:"25px",marginBottom:"10px"}} />
+                    <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Описание</div>
+                    <input id={"desc"} style={{width:"80%",fontSize:"17px",height:"25px",marginBottom:"10px"}} />
+                    <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Тэги к статье</div>
 
-               </div>
-                <div className={className} onClick={this.focus}>
-                    <Editor
-                        blockStyleFn={getBlockStyle}
-                        customStyleMap={styleMap}
-                        editorState={editorState}
-                        handleKeyCommand={this.handleKeyCommand}
-                        onChange={this.onChange}
-                        onTab={this.onTab}
-                        plugins={plugins}
-                        placeholder="Tell a story..."
-                        ref="editor"
-                        spellCheck={true}
+                    <Chips
+                        theme={theme}
+                        value={this.state.chips}
+                        onChange={this.onChipsChange}
+                        fromSuggestionsOnly={false}
+                        chipTheme={chipTheme}
+                        createChipKeys={[13,32]}
+
                     />
+                    <div style={{marginTop:"10px"}}>
+                        <label className="label">
+                            <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Обложка</div>
+
+                            <input name="photo" accept="image/*,image/jpeg" onChange={(e)=>this.checkFile1(e)} type={"file"}/>
+                        </label>
+                    </div>
                 </div>
-                <button onClick={this.handleClick}>Insert an image</button>
-                <input onChange={(e)=>this.checkFile(e)} type={"file"}/>
-                <div >
-                    {stateToHTML(this.state.editorState.getCurrentContent(),options)}
-                </div>
-                <div dangerouslySetInnerHTML={{__html:stateToHTML(this.state.editorState.getCurrentContent(),options)}}>
+                <div className="RichEditor-root" >
+                    <div style={{position:"sticky",top:"50px",backgroundColor:"white"}}>
+                        <div style={{height:"10px"}}></div>
+                        <BlockStyleControls
+                            editorState={editorState}
+                            onToggle={this.toggleBlockType}
+                        />
+                        <InlineStyleControls
+                            editorState={editorState}
+                            onToggle={this.toggleInlineStyle}
+                        />
+                        <div className="imageEditor">
+                            <div className="form-group">
+                                <label className="label">
+                                    <i className="material-icons">attach_file</i>
+                                    <input name="photo" accept="image/*,image/jpeg" onChange={(e)=>this.checkFile(e)} type={"file"}/>
+                                </label>
+                            </div>
+                        </div>
+                        <div style={{backgroundColor:"#dbdbdb",height:"1px",paddingRight:"40px",paddingLeft:"40px"}}></div>
+
+                    </div>
+                    <div className={className} onClick={this.focus}>
+                        <Editor
+                            blockStyleFn={getBlockStyle}
+                            customStyleMap={styleMap}
+                            editorState={editorState}
+                            handleKeyCommand={this.handleKeyCommand}
+                            onChange={this.onChange}
+                            onTab={this.onTab}
+                            plugins={plugins}
+                            ref="editor"
+                            spellCheck={true}
+                        />
+                    </div>
+
 
                 </div>
+                <div style={{textAlign:'center',marginTop:"50px"}}>
+                    <p><input type="checkbox" id={"checkbox"} onChange={()=>{
 
+                    }} name="a" style={{marginBottom:"15px"}}/> Поместить в главное</p>
+                    <div onClick={()=>{
+                        const data1 = new URLSearchParams();
+
+                        var main=0
+                        if(document.getElementById("checkbox").checked){
+                            main=1
+                        }
+
+
+                        data1.append("token",getCookie("token"))
+                        data1.append("title",document.getElementById("title").value)
+                        data1.append("content",stateToHTML(this.state.editorState.getCurrentContent(),options))
+                        data1.append("source","")
+                        data1.append("tags",JSON.stringify(this.state.chips))
+                        data1.append("description",document.getElementById("desc").value)
+                        data1.append("coverImage",this.state.coverImage)
+                        data1.append("main",main)
+                        fetch('http://localhost:15234/createArticle',{method:"POST",body: data1}).then(result=>result.json())
+                            .then(data=>{
+                                alert(JSON.stringify(data))
+                            })
+
+
+                    }} style={{width:"150px",verticalAlign:"center",height:"16px",marginBottom:"15px"}} className={"button2"}>Опубликовать</div>
+
+                </div>
             </div>
         );
     }
