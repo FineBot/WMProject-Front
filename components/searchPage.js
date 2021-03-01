@@ -4,6 +4,8 @@ import Header from "./Header"
 import fetch from "isomorphic-unfetch";
 import InSearchNews from "../components/inSearchNews"
 import {getHead} from "./getHead";
+import {isMobile} from "./other";
+import MobileHeader from "./MobileHeader";
 
 export const config = {
     amp: false,
@@ -69,6 +71,9 @@ export default class Persik extends React.Component {
 
     }
     componentDidMount() {
+        if(isMobile()){
+            this.setState({mobile:true})
+        }
         document.addEventListener("scroll",()=>this.scroll())
 
     }
@@ -96,16 +101,14 @@ export default class Persik extends React.Component {
             })
     }
     render() {
-        if(this.state.mobile){
+
             return (
                 <div>
-                    mobile
-                </div>
-            );
-        }else{
-            return (
-                <div>
-                    <Header/>
+                    {this.state.mobile?(
+                        <MobileHeader shownavigate={false}></MobileHeader>
+                    ):(
+                        <Header/>
+                    )}
                     {getHead("Поиск","просто новости",[])}
 
                     <div className={"centre"} >
@@ -154,7 +157,7 @@ export default class Persik extends React.Component {
                 </div>
             );
         }
-    }
+
 }
 
 

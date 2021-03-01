@@ -36,7 +36,9 @@ export default class Persik extends React.Component {
 
         }
     }
-
+    onclc(){
+        this.setState({showmenu:!this.state.showmenu})
+    }
 
     render() {
 
@@ -44,20 +46,16 @@ export default class Persik extends React.Component {
         return (
             <CheckAuth>
 
-                <AdminHeader onclc={()=>{
-                    this.setState({showmenu:!this.state.showmenu})
-                }} mobileMenu={true}/>
-                <LeftMenu show={this.state.showmenu}/>
+                <AdminHeader onclc={()=>this.onclc()} mobileMenu={true}/>
+                <LeftMenu onclc={()=>this.onclc()} show={this.state.showmenu}/>
                 <div>
 
-                   <Layout>
                        <div id={"parentAdmin"} style={{marginTop:"20px"}} className={this.state.parentClass}>
 
                            <div style={{marginLeft:"auto",marginRight:"auto",maxWidth:"1000px"}}>
                                <Editor style={{color:"black"}}/>
                            </div>
                        </div>
-                   </Layout>
 
 
                     </div>

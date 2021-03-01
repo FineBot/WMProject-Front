@@ -1,28 +1,72 @@
 'use strict';
 
-import { EditorState, RichUtils,AtomicBlockUtils} from "draft-js";
+import { EditorState, RichUtils,AtomicBlockUtils,ContentState } from "draft-js";
 import {stateToHTML} from 'draft-js-export-html';
 import Editor  from "draft-js-plugins-editor";
 import createImagePlugin from "draft-js-image-plugin";
 import * as React from "react";
 import Chips, { Chip } from 'react-chips'
 import fetch from "isomorphic-unfetch";
+import htmlToDraft from 'html-to-draftjs';
+import Info from "./info"
 import {getCookie} from "./other";
+
+import dynamic from 'next/dynamic'
 
 const imagePlugin = createImagePlugin();
 const plugins = [imagePlugin];
+
+
+
 export default class RichEditorExample extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {editorState: EditorState.createEmpty(),chips: []};
+        this.state = {editorState: EditorState.createEmpty(),chips: [],edit:false};
 
         this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = (editorState) => {
+            this.setState({editorState,done:false})
+        };
 
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.onTab = (e) => this._onTab(e);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
+    }
+
+
+    componentWillReceiveProps(nextProps, nextContext) {
+      this.init(nextProps)
+    }
+
+    init(prop){
+        var {data}=prop
+        if(data!=null && "result" in data){
+            data=data['result'][0]
+            document.getElementById("title").value=data['title']
+            document.getElementById("desc").value=data['description']
+            document.getElementById("desc").value=data['description']
+            this.setState({chips:JSON.parse(data['tags'])})
+
+            const blocksFromHtml = htmlToDraft(data['content']);
+            const { contentBlocks, entityMap } = blocksFromHtml;
+            const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+            const editorState = EditorState.createWithContent(contentState);
+            this.setState({editorState:editorState})
+            if(data['main']=="1"){
+                document.getElementById("checkbox").checked=true
+            }
+
+
+        }
+    }
+
+    componentDidMount() {
+        var url=window.location;
+        const id = url.toString().split("/")[4]
+        if(id.toLowerCase()=="edit"){
+            this.setState({edit:true})
+        }
     }
 
     _handleKeyCommand(command) {
@@ -77,7 +121,7 @@ export default class RichEditorExample extends React.Component {
     checkFile1(e){
         let reader = new FileReader();
         let file = e.target.files[0];
-
+        this.checkEdit()
         reader.onloadend = () => {
             this.setState({
                 file: file,
@@ -91,14 +135,38 @@ export default class RichEditorExample extends React.Component {
 
     }
     onChipsChange = chips => {
-        this.setState({ chips });
+        this.setState({ chips,done:false });
     }
-    render() {
-        const {editorState} = this.state;
+    setStateError(data){
+        switch (data.error.text){
+            case 'tags is missing':
+                this.setState({textError:"Тэги не заполнены."})
+                break;
+            case 'title is missing':
+                this.setState({textError:"Не указан заголовок."})
+                break;
+            case 'content is missing':
+                this.setState({textError:"Отсутствует контент статьи."})
+                break;
+            case 'description is missing':
+                this.setState({textError:"Отсутствует описание статьи."})
+                break;
+            case 'coverImage is missing':
+                this.setState({textError:"Отсутствует обложка статьи."})
+                break;
+            case 'source is missing':
+                this.setState({textError:"Отсутствует источник статьи."})
+                break;
+        }
+    }
+    checkEdit(){
+        this.setState({done:false})
+    }
+    getButton(){
         let options = {
+
             entityStyleFn: (entity) => {
                 const entityType = entity.get('type').toLowerCase();
-
                 if (entityType === 'image') {
                     const data = entity.getData();
                     return {
@@ -109,33 +177,113 @@ export default class RichEditorExample extends React.Component {
                         attributes: {
                             src: data.src,
                         },
-                        style: {
 
-                        },
                     };
                 }
                 if (entityType === 'figure') {
                     const data = entity.getData();
                     return {
-                        element: 'figure',
+                        element: 'div',
                         attributes: {
                             src: data.src,
                         },
-                        style: {
-                            width:"100%"
-                        },
+
                     };
                 }
             },
             defaultBlockTag: 'p',
             inlineStyles: {
-                // Override default element (`strong`).
                 CODE: {element: 'mono'},
 
             }
         };
-        // If the user changes block type before entering any text, we can
-        // either style the placeholder or hide it. Let's just hide it now.
+        if(this.state.edit){
+            return(
+                <div onClick={()=>{
+                    this.setState({loading:true})
+                    const data1 = new URLSearchParams();
+
+                    var main=0
+                    if(document.getElementById("checkbox").checked){
+                        main=1
+                    }
+
+
+                    data1.append("token",getCookie("token"))
+                    data1.append("title",document.getElementById("title").value)
+                    data1.append("content",stateToHTML(this.state.editorState.getCurrentContent(),options))
+                    data1.append("source","")
+                    data1.append("tags",JSON.stringify(this.state.chips))
+                    data1.append("description",document.getElementById("desc").value)
+                    if(this.state.coverImage!=null){
+                        data1.append("coverImage",this.state.coverImage)
+
+                    }
+                    data1.append("main",main)
+                    data1.append("id",this.props.id)
+                    fetch('http://localhost:15234/editArticle',{method:"POST",body: data1}).then(result=>result.json())
+                        .then(data=>{
+
+                            if("error" in data){
+                                this.setStateError(data)
+                            }else{
+                                if(data['result']==1){
+                                    this.setState({done:true})
+
+                                }
+                            }
+                            this.setState({loading:false})
+                        })
+
+
+                }} style={{width:"150px",verticalAlign:"center",height:"16px",marginBottom:"15px"}} className={"button2"}>Сохранить</div>
+            )
+        }else{
+            return (
+                <div onClick={()=>{
+                    this.setState({loading:true})
+                    const data1 = new URLSearchParams();
+
+                    var main=0
+                    if(document.getElementById("checkbox").checked){
+                        main=1
+                    }
+
+
+                    data1.append("token",getCookie("token"))
+                    data1.append("title",document.getElementById("title").value)
+                    data1.append("content",stateToHTML(this.state.editorState.getCurrentContent(),options))
+                    data1.append("source","")
+                    data1.append("tags",JSON.stringify(this.state.chips))
+                    data1.append("description",document.getElementById("desc").value)
+                    data1.append("coverImage",this.state.coverImage)
+                    data1.append("main",main)
+                    fetch('http://localhost:15234/createArticle',{method:"POST",body: data1}).then(result=>result.json())
+                        .then(data=>{
+
+                            if("error" in data){
+                                this.setStateError(data)
+
+                            }else{
+                                if(data['result']==1){
+                                    this.setState({done:true})
+                                    setTimeout(()=>window.location="/admin",500)
+                                }
+                            }
+                            this.setState({loading:false})
+
+                        })
+
+
+                }} style={{width:"150px",verticalAlign:"center",height:"16px",marginBottom:"15px"}} className={"button2"}>Опубликовать</div>
+            )
+        }
+    }
+
+    render() {
+        const {editorState} = this.state;
+
+
         let className = 'RichEditor-editor';
         var contentState = editorState.getCurrentContent();
         if (!contentState.hasText()) {
@@ -240,10 +388,11 @@ export default class RichEditorExample extends React.Component {
         return (
             <div>
                 <div style={{width:"100%",textAlign:"center",marginBottom:"20px"}}>
+                    <Info text={this.state.textError}/>
                     <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Заголовок</div>
-                    <input id={"title"} style={{width:"80%",fontSize:"17px",height:"25px",marginBottom:"10px"}} />
+                    <input id={"title"} onChange={()=>this.checkEdit()} style={{width:"80%",fontSize:"17px",height:"25px",marginBottom:"10px"}} />
                     <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Описание</div>
-                    <input id={"desc"} style={{width:"80%",fontSize:"17px",height:"25px",marginBottom:"10px"}} />
+                    <input id={"desc"} onChange={()=>this.checkEdit()} style={{width:"80%",fontSize:"17px",height:"25px",marginBottom:"10px"}} />
                     <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Тэги к статье</div>
 
                     <Chips
@@ -259,7 +408,7 @@ export default class RichEditorExample extends React.Component {
                         <label className="label">
                             <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Обложка</div>
 
-                            <input name="photo" accept="image/*,image/jpeg" onChange={(e)=>this.checkFile1(e)} type={"file"}/>
+                            <input id={"coverimg"} name="photo" accept="image/*,image/jpeg" onChange={(e)=>this.checkFile1(e)} type={"file"}/>
                         </label>
                     </div>
                 </div>
@@ -301,34 +450,25 @@ export default class RichEditorExample extends React.Component {
 
 
                 </div>
-                <div style={{textAlign:'center',marginTop:"50px"}}>
-                    <p><input type="checkbox" id={"checkbox"} onChange={()=>{
+                <div style={{textAlign:'center',marginTop:"50px",paddingBottom:"50px"}}>
+                    <p><input type="checkbox"  id={"checkbox"} onChange={()=>{
+                        this.setState({done:false})
 
-                    }} name="a" style={{marginBottom:"15px"}}/> Поместить в главное</p>
-                    <div onClick={()=>{
-                        const data1 = new URLSearchParams();
+                    }}  name="a" /> Поместить в главное</p>
+                    {this.state.loading?(<div className="loaderBottom">
+                        <div className="inner one"></div>
+                        <div className="inner two"></div>
+                        <div className="inner three"></div>
+                    </div>):(
+                        <div>
+                            {this.state.done?(
+                                <img src={"/static/images/kisspng-check-mark-computer-icons-checkbox-1-5ab9367b448746.0700693515220875472807.png"} width={"50px"}/>
 
-                        var main=0
-                        if(document.getElementById("checkbox").checked){
-                            main=1
-                        }
-
-
-                        data1.append("token",getCookie("token"))
-                        data1.append("title",document.getElementById("title").value)
-                        data1.append("content",stateToHTML(this.state.editorState.getCurrentContent(),options))
-                        data1.append("source","")
-                        data1.append("tags",JSON.stringify(this.state.chips))
-                        data1.append("description",document.getElementById("desc").value)
-                        data1.append("coverImage",this.state.coverImage)
-                        data1.append("main",main)
-                        fetch('http://localhost:15234/createArticle',{method:"POST",body: data1}).then(result=>result.json())
-                            .then(data=>{
-                                alert(JSON.stringify(data))
-                            })
-
-
-                    }} style={{width:"150px",verticalAlign:"center",height:"16px",marginBottom:"15px"}} className={"button2"}>Опубликовать</div>
+                            ):(
+                                <div>{this.getButton()}</div>
+                            )}
+                        </div>
+                    )}
 
                 </div>
             </div>

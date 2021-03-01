@@ -55,7 +55,6 @@ class Persikf extends React.Component {
 								<td width={28} align="right">
 									<a style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none"}} href="/search">
 										<Icon28SearchOutline style={{paddingRight:"10px"}} className={"iconColor"}/>
-
 									</a>
 
 								</td>

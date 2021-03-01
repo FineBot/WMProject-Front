@@ -41,7 +41,7 @@ const Post=props=> (
 
                             </div>
 
-                            <div style={{margin:"10px",display:"flex",flexWrap:"wrap",overflow:"hidden"}} dangerouslySetInnerHTML={{__html:props.text}}>
+                            <div  style={{margin:"10px",flexWrap:"wrap",overflow:"hidden"}} dangerouslySetInnerHTML={{__html:props.text}}>
 
                             </div>
 

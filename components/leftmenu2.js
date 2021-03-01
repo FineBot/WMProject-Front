@@ -51,7 +51,7 @@ export default class Persik extends React.Component {
                         <div style={{display:"flex",position:"fixed",zIndex:"99"}}>
                             <div className="leftmenu" style={{width:"200px",height:"100%",position:"fixed",textAlign:"left",paddingLeft:"10px",marginLeft:"-5px",zIndex:"1"}}>
 
-                                <div className={"itemMenu"} id="homeb" onClick={() => {window.location = "/admin"}}
+                                <div className={"itemMenu"} id="homeb" onClick={() => {window.location = "/tags/main"}}
                                      style={{
                                          cursor: "pointer",
                                          paddingLeft: "2px",
@@ -61,12 +61,12 @@ export default class Persik extends React.Component {
                                          paddingBottom: "5px",
                                          borderRadius: 10,
                                          marginRight: "10px"
-                                     }}><img src="/static/images/icons8-главная-96.png" style={{height: t, width: t}}/>
-                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Главная</b></div>
+                                     }}>
+                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Главное</b></div>
                                 </div>
 
                                 <div className={"itemMenu"} id="searchb" onClick={() => {
-                                    window.location = "/admin/create"
+                                    window.location = "/tags/Животные"
                                 }}style={{
                                          cursor: "pointer",
                                          paddingLeft: "2px",
@@ -75,9 +75,50 @@ export default class Persik extends React.Component {
                                          paddingBottom: "5px",
                                          borderRadius: 10,
                                          marginRight: "10px"
-                                     }}><img src="/static/images/add.png" style={{height: t, width: t}}/>
-                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Создать</b></div>
+                                     }}>
+                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Животные</b></div>
                                 </div>
+                                <div className={"itemMenu"} id="searchb" onClick={() => {
+                                    window.location = "/tags/Политика"
+                                }}style={{
+                                    cursor: "pointer",
+                                    paddingLeft: "2px",
+                                    display: "flex",
+                                    paddingTop: "5px",
+                                    paddingBottom: "5px",
+                                    borderRadius: 10,
+                                    marginRight: "10px"
+                                }}>
+                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Политика</b></div>
+
+                                </div>
+                                <div className={"itemMenu"} id="searchb" onClick={() => {
+                                    window.location = "/search"
+                                }}style={{
+                                    cursor: "pointer",
+                                    paddingLeft: "2px",
+                                    display: "flex",
+                                    paddingTop: "5px",
+                                    paddingBottom: "5px",
+                                    borderRadius: 10,
+                                    marginRight: "10px"
+                                }}>
+                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Поиск</b></div>
+                                </div>
+                                <div className={"itemMenu"} id="searchb" onClick={() => {
+                                    window.location = "/admin"
+                                }}style={{
+                                    cursor: "pointer",
+                                    paddingLeft: "2px",
+                                    display: "flex",
+                                    paddingTop: "5px",
+                                    paddingBottom: "5px",
+                                    borderRadius: 10,
+                                    marginRight: "10px"
+                                }}>
+                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Login</b></div>
+                                </div>
+
                             </div>
                             {isMobile()?(
                                 <div onClick={()=>{

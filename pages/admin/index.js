@@ -111,17 +111,17 @@ export default class Persik extends React.Component {
                 }
             })
     }
-
+    onclc(){
+        this.setState({showmenu:!this.state.showmenu})
+    }
     render() {
 
 
             return (
                 <CheckAuth>
 
-                    <AdminHeader onclc={()=>{
-                        this.setState({showmenu:!this.state.showmenu})
-                    }} mobileMenu={true}/>
-                    <LeftMenu show={this.state.showmenu}/>
+                    <AdminHeader onclc={()=>this.onclc()}/>
+                    <LeftMenu onclc={()=>this.onclc()} show={this.state.showmenu}/>
                     <div>
                         <div id={"parentAdmin"} className={this.state.parentClass}>
                             <div id={"searchDiv"} className={"adminGlavPage"} style={{marginLeft:"auto",marginRight:"auto",display:"block",width:"80%",textAlign:"center",paddingBottom:"15px"}}>

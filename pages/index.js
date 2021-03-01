@@ -2,6 +2,7 @@
 import React from 'react';
 import {isMobile} from "../components/other"
 import Startpage from "../components/startpage"
+import MobileStartpage from "../components/mobileStartpage"
 
 export const config = {
     amp: false,
@@ -29,7 +30,7 @@ export default class Persik extends React.Component {
        if(this.state.mobile){
            return (
                <div>
-                   mobile
+                   <MobileStartpage/>
                </div>
            );
        }else{

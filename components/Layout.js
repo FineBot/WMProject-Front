@@ -76,7 +76,8 @@ figure{
     text-align: center;
 }
 img{
-    max-height: 300px;
+    max-height: 500px;
+    width: 100%;
 }
 p{
     font-size: 17px;
