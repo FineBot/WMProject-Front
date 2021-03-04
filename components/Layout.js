@@ -71,10 +71,7 @@ ol{
     padding-bottom: 15px;
     font-size: 17px;
 }
-figure{
-    width: 100%;
-    text-align: center;
-}
+
 img{
     object-fit: contain;
     max-height: 500px;
