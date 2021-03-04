@@ -21,7 +21,7 @@ const plugins = [imagePlugin];
 export default class RichEditorExample extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {editorState: EditorState.createEmpty(),chips: [],edit:false};
+        this.state = {editorState: EditorState.createEmpty(),chips: [],edit:false,coverImage:null};
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {
@@ -46,7 +46,7 @@ export default class RichEditorExample extends React.Component {
             document.getElementById("title").value=data['title']
             document.getElementById("desc").value=data['description']
             document.getElementById("desc").value=data['description']
-            this.setState({chips:JSON.parse(data['tags'])})
+            this.setState({chips:JSON.parse(data['tags']),coverImage:data['coverImage']})
 
             const blocksFromHtml = htmlToDraft(data['content']);
             const { contentBlocks, entityMap } = blocksFromHtml;
@@ -228,7 +228,7 @@ export default class RichEditorExample extends React.Component {
                                 this.setStateError(data)
                             }else{
                                 if(data['result']==1){
-                                    this.setState({done:true})
+                                    this.setState({done:true,textError:null})
 
                                 }
                             }
@@ -266,7 +266,7 @@ export default class RichEditorExample extends React.Component {
 
                             }else{
                                 if(data['result']==1){
-                                    this.setState({done:true})
+                                    this.setState({done:true,textError:null})
                                     setTimeout(()=>window.location="/admin",500)
                                 }
                             }
@@ -407,9 +407,24 @@ export default class RichEditorExample extends React.Component {
                     <div style={{marginTop:"10px"}}>
                         <label className="label">
                             <div style={{textAlign:'left',width:"80%",marginLeft:"auto",marginRight:"auto",fontSize:"17px"}}>Обложка</div>
+                            {this.state.coverImage==null?(null):(
+                                <div style={{
+                                    height:"400px",
+                                    marginTop:"15px",
+                                    marginBottom:"15px",
+                                    width:"100%",
+                                    backgroundPosition:"50% 50%",
+                                    backgroundSize:"cover",
+                                    backgroundImage : "url("+this.state.coverImage+")"
+                                }} className={"coverImage"}/>
+                            )}
+                            <div style={{marginBottom:"-20px"}}>
+                                {this.state.coverImage==null?(<div className={"button2"}>Загрузить обложку</div>):(<div className={"button2"}>Изменить обложку</div>)}<br/>
+                                <input id={"coverimg"} style={{opacity:0, width:0, height:0}} name="photo" accept="image/*,image/jpeg" onChange={(e)=>this.checkFile1(e)} type={"file"}/>
 
-                            <input id={"coverimg"} name="photo" accept="image/*,image/jpeg" onChange={(e)=>this.checkFile1(e)} type={"file"}/>
+                            </div>
                         </label>
+
                     </div>
                 </div>
                 <div className="RichEditor-root" >

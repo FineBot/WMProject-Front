@@ -76,6 +76,7 @@ figure{
     text-align: center;
 }
 img{
+    object-fit: contain;
     max-height: 500px;
     width: 100%;
 }

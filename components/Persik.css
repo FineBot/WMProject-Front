@@ -310,7 +310,9 @@ html {
     padding: 20px;
 }
 .RichEditor-editor img{
-    max-width: 100%;
+    object-fit: contain;
+    max-height: 500px;
+    width: 100%;
 }
 .RichEditor-controls {
     font-family: 'Helvetica', sans-serif;

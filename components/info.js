@@ -19,7 +19,7 @@ export default class Persik extends React.Component {
 
     }
     componentWillReceiveProps(nextProps, nextContext) {
-        if(this.props.text==(undefined || ""||null) && nextProps.text!=(undefined && "" && null)||this.props.text!=nextProps.text){
+        if(this.props.text==(undefined || ""||null) && nextProps.text!=(undefined && "" && null)||this.props.text!=nextProps.text&&nextProps.text!=null){
             window.scrollTo({top: 0, behavior: 'smooth'})}
     }
 
