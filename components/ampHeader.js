@@ -15,26 +15,7 @@ export default function () {
 									/></a>
 								</div>
 							</td>
-							<td align={"left"}>
-								<div style={{display:"flex",overflow:"auto"}}>
-									<div className={"tabs"}>
-										Главное
-									</div>
-									<div style={{backgroundColor:"#dbdbdb",width:"1px",marginLeft:"5px",marginRight:"5px"}}></div>
-									<div className={"tabs"}>
-										Животные
-									</div>
-									<div style={{backgroundColor:"#dbdbdb",width:"1px",marginLeft:"5px",marginRight:"5px"}}></div>
-									<div className={"tabs"}>
-										Политика
-									</div>
-								</div>
-							</td>
-							<td align="right"><div>
-								<a style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none", paddingRight:"10px"}} href="/login">
-									<Icon28User className={"iconColor"}/>
-								</a>
-							</div></td>
+
 						</tr>
 					</table>
 				</div>

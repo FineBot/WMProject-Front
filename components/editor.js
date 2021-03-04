@@ -215,7 +215,7 @@ export default class RichEditorExample extends React.Component {
                     data1.append("source","")
                     data1.append("tags",JSON.stringify(this.state.chips))
                     data1.append("description",document.getElementById("desc").value)
-                    if(this.state.coverImage!=null){
+                    if(this.state.coverImage!=null && this.state.coverImage!=this.props.data['result'][0].coverImage){
                         data1.append("coverImage",this.state.coverImage)
 
                     }

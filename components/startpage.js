@@ -102,6 +102,25 @@ export default class Persik extends React.Component {
     }
     render() {
 
+
+        if(this.state.data!=null){
+            if(this.state.data.result.main.length==0){
+                return (
+                    <div>
+                        {getHead("News Site","просто новости",[])}
+
+                        <Header shownavigate={false}></Header>
+                        <div className={"parent2"}>
+                            <div style={{marginLeft:"auto",marginRight:"auto",display:"block",width:"95%",textAlign:"center",marginTop:"10px",paddingBottom:"10px"}}>
+
+                            <img style={{width:"50%",height:"50%"}} src={"/static/images/d60e314966c8fd2de3c62f5fb6b23b1b.png"}/>
+                            <h3>Тут пусто</h3>
+                        </div>
+                        </div>
+                    </div>
+                )
+            }
+        }
         return(
             <div>
                 {getHead("News Site","просто новости",[])}
@@ -110,86 +129,92 @@ export default class Persik extends React.Component {
 
                 <div className={"parent2"}>
                     {this.state.data!=null?(
-                        <a target={"_blank"} href={"/article/"+this.state.data.result.main[0]['id'].toString()}>
-                            <div>
-                                <div style={{
-                                    backgroundImage : " linear-gradient(" +
-                                        "      rgba(0, 0, 0, 0.6), " +
-                                        "      rgba(0, 0, 0, 0.6)" +
-                                        "    ), url("+this.state.data.result.main[0].coverImage+")",
-                                    backgroundSize:"cover",
-                                    height: "60vh",
-                                    display: 'flex',
-                                    backgroundPosition:"50% 50%",
-                                    alignItems: 'flex-end',
-                                    justifyContent: 'left',
+                       <div>
+                           {this.state.data.result.main.length>0?(
+                               <a target={"_blank"} href={"/article/"+this.state.data.result.main[0]['id'].toString()}>
+                                   <div>
+                                       {this.state.data.result.main.length>0?(
+                                           <div style={{
+                                               backgroundImage : " linear-gradient(" +
+                                                   "      rgba(0, 0, 0, 0.6), " +
+                                                   "      rgba(0, 0, 0, 0.6)" +
+                                                   "    ), url("+this.state.data.result.main[0].coverImage+")",
+                                               backgroundSize:"cover",
+                                               height: "60vh",
+                                               display: 'flex',
+                                               backgroundPosition:"50% 50%",
+                                               alignItems: 'flex-end',
+                                               justifyContent: 'left',
 
-                                }}>
-                                    <div style={{width:"100%"}}>
-                                        <div>
-                                            <table width="100%" style={{height:"60vh",overflow:"hidden"}}>
-                                                <tr >
-                                                    <td width="50%" valign="bottom">
-                                                        <div style={{width:"100%"}}>
-                                                            <div style={{paddingLeft:"50px",marginBottom:"-20px"}}>
-                                                                {JSON.parse(this.state.data.result.main[0].tags).map((e)=>{
-                                                                    return (
-                                                                        <div className={"tags"}>
-                                                                            {e}
-                                                                        </div>
-                                                                    )
-                                                                })}
+                                           }}>
+                                               <div style={{width:"100%"}}>
+                                                   <div>
+                                                       <table width="100%" style={{height:"60vh",overflow:"hidden"}}>
+                                                           <tr >
+                                                               <td width="50%" valign="bottom">
+                                                                   <div style={{width:"100%"}}>
+                                                                       <div style={{paddingLeft:"50px",marginBottom:"-20px"}}>
+                                                                           {JSON.parse(this.state.data.result.main[0].tags).map((e)=>{
+                                                                               return (
+                                                                                   <div className={"tags"}>
+                                                                                       {e}
+                                                                                   </div>
+                                                                               )
+                                                                           })}
 
-                                                            </div>
+                                                                       </div>
 
-                                                            <div style={{marginLeft:"50px",marginBottom:"20px",maxWidth:"800px"}}>
-                                                                <h1 style={{fontSize:"40px",color:"white"}}>{this.state.data.result.main[0].title}</h1>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td width="50%" align="right" valign="top">
-                                                        <div className={"scrollHidden"} style={{color:"white",textAlign:"left",width:"100%",display:"block",maxWidth:"500px",overflow:"auto",maxHeight:"60vh"}}>
-                                                            <h1 style={{fontSize:"20px"}}>
-                                                                Главные новости
-                                                            </h1>
-                                                            <div>
-                                                                {this.state.data.result.main.map((e,i)=>{
-                                                                    if(i==0){
-                                                                        return null
-                                                                    }
-                                                                    return (
-                                                                        <a target={"_blank"} href={"/article/"+e['id']}>
-                                                                            <div className={"newsOnStartpage"} style={{padding:"5px",marginTop:"5px",marginRight:"5px",cursor:"pointer",color:"white"}}>
-                                                                                {JSON.parse(this.state.data.result.main[i].tags).map((ef)=>{
-                                                                                    return (
-                                                                                        <div className={"tags"}>
-                                                                                            {ef}
-                                                                                        </div>
-                                                                                    )
-                                                                                })}
-                                                                                <div style={{fontSize:"11px"}}>{this.getTime(e.publishedAt)}</div>
-                                                                                {e.title}
-                                                                                <div style={{backgroundColor:"gray",height:"1px",marginTop:"5px"}}></div>
+                                                                       <div style={{marginLeft:"50px",marginBottom:"20px",maxWidth:"800px"}}>
+                                                                           <h1 style={{fontSize:"40px",color:"white"}}>{this.state.data.result.main[0].title}</h1>
+                                                                       </div>
+                                                                   </div>
+                                                               </td>
+                                                               <td width="50%" align="right" valign="top">
+                                                                   <div className={"scrollHidden"} style={{color:"white",textAlign:"left",width:"100%",display:"block",maxWidth:"500px",overflow:"auto",maxHeight:"60vh"}}>
+                                                                       {this.state.data.result.main.length>1?(<h1 style={{fontSize:"20px"}}>
+                                                                           Главные новости
+                                                                       </h1>):(null)}
+                                                                       <div>
+                                                                           {this.state.data.result.main.map((e,i)=>{
+                                                                               if(i==0){
+                                                                                   return null
+                                                                               }
+                                                                               return (
+                                                                                   <a target={"_blank"} href={"/article/"+e['id']}>
+                                                                                       <div className={"newsOnStartpage"} style={{padding:"5px",marginTop:"5px",marginRight:"5px",cursor:"pointer",color:"white"}}>
+                                                                                           {JSON.parse(this.state.data.result.main[i].tags).map((ef)=>{
+                                                                                               return (
+                                                                                                   <div className={"tags"}>
+                                                                                                       {ef}
+                                                                                                   </div>
+                                                                                               )
+                                                                                           })}
+                                                                                           <div style={{fontSize:"11px"}}>{this.getTime(e.publishedAt)}</div>
+                                                                                           {e.title}
+                                                                                           <div style={{backgroundColor:"gray",height:"1px",marginTop:"5px"}}></div>
 
-                                                                            </div>
-                                                                        </a>
-                                                                    )
-                                                                })}
-                                                            </div>
-                                                        </div>
-                                                    </td>
+                                                                                       </div>
+                                                                                   </a>
+                                                                               )
+                                                                           })}
+                                                                       </div>
+                                                                   </div>
+                                                               </td>
 
-                                                </tr>
+                                                           </tr>
 
-                                            </table>
-                                        </div>
+                                                       </table>
+                                                   </div>
 
 
-                                    </div>
+                                               </div>
 
-                                </div>
-                            </div>
-                        </a>
+                                           </div>
+                                       ):(null)}
+                                   </div>
+                               </a>
+                           ):(null)}
+                       </div>
                     ):(
                         <div className="loader">
                             <div className="inner one"></div>
@@ -203,7 +228,8 @@ export default class Persik extends React.Component {
 
                         {this.state.data!=null?(
                            <div>
-                               <h2 style={{color:"gray"}}>Остальные статьи</h2>
+                               {this.state.data.result.all.length>0?(<h2 style={{color:"gray"}}>Остальные статьи</h2>
+                                   ):(null)}
                                <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
                                    {this.state.data.result['all'].map((e,i)=>{
 

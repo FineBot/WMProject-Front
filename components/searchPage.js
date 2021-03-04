@@ -142,7 +142,7 @@ export default class Persik extends React.Component {
                                             <img style={{width:"50%",height:"50%"}} src={"/static/images/d60e314966c8fd2de3c62f5fb6b23b1b.png"}/>
                                             <h3>Ничего не найдено</h3>
                                         </div>):(<div>
-                                            <InSearchNews admin={true} data={this.state.data}/>
+                                            <InSearchNews data={this.state.data}/>
                                             {this.state.loading1?(<div className="loaderBottom">
                                                 <div className="inner one"></div>
                                                 <div className="inner two"></div>

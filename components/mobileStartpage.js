@@ -103,7 +103,24 @@ export default class Persik extends React.Component {
 
     }
     render() {
+        if(this.state.data!=null){
+            if(this.state.data.result.main.length==0){
+                return (
+                    <div>
+                        {getHead("News Site","просто новости",[])}
 
+                        <MobileHeader shownavigate={false}></MobileHeader>
+                        <div className={"parent2"}>
+                            <div style={{marginLeft:"auto",marginRight:"auto",display:"block",width:"95%",textAlign:"center",marginTop:"10px",paddingBottom:"10px"}}>
+
+                                <img style={{width:"50%",height:"50%"}} src={"/static/images/d60e314966c8fd2de3c62f5fb6b23b1b.png"}/>
+                                <h3>Тут пусто</h3>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+        }
         return(
             <div>
                 {getHead("News Site","просто новости",[])}
@@ -169,8 +186,14 @@ export default class Persik extends React.Component {
 
                     )}
                     <div style={{}}>
+                        {this.state.data!=null?(
+                            <div>
+                                {this.state.data.result.all.length>0?(<h2 style={{color:"gray",marginLeft:"10px",marginBottom:"-15px",marginTop:"10px"}}>Остальные статьи</h2>
 
-                        <h2 style={{color:"gray",marginLeft:"10px",marginBottom:"-15px",marginTop:"10px"}}>Остальные статьи</h2>
+                                ):(null)}
+                            </div>
+                        ):(null)}
+
 
                         {this.state.data!=null?(
                             <div className={"centre"} >

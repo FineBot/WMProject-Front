@@ -78,7 +78,21 @@ export default class Persik extends React.Component {
                                      }}><img src="/static/images/add.png" style={{height: t, width: t}}/>
                                     <div style={{marginLeft: "5px", fontSize: 20}}><b>Создать</b></div>
                                 </div>
+                                <div className={"itemMenu"} id="searchb" onClick={() => {
+                                    window.location = "/admin/settings"
+                                }}style={{
+                                    cursor: "pointer",
+                                    paddingLeft: "2px",
+                                    display: "flex",
+                                    paddingTop: "5px",
+                                    paddingBottom: "5px",
+                                    borderRadius: 10,
+                                    marginRight: "10px"
+                                }}><img src="/static/images/ic_settings_128_28718.png" style={{height: t, width: t}}/>
+                                    <div style={{marginLeft: "5px", fontSize: 20}}><b>Настройки</b></div>
+                                </div>
                             </div>
+
                             {isMobile()?(
                                 <div onClick={()=>{
                                     this.props.onclc()

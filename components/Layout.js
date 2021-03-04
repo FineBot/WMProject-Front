@@ -26,7 +26,6 @@ div{
     font-family: 'Open Sans';
 }
 .tabs{
-    cursor: pointer;
     padding: 5px;
 }
 .parent{
@@ -74,7 +73,7 @@ ol{
 
 img{
     object-fit: contain;
-    max-height: 500px;
+    max-height: 700px;
     width: 100%;
 }
 p{

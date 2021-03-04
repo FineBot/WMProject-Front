@@ -45,10 +45,13 @@ export default class Persik extends React.Component {
                     .then(response=>response.json())
                     .then(data=>{
                         if("result" in data){
-                            setCookie("checkToken","ok",{'max-age': 60*15})
+                            setCookie("checkToken","ok",{'max-age': 60*2})
                         }else{
                             setCookie("token",{"max-age":-1})
-                            window.location="/admin/login"
+                            if(id!=="login"){
+                                window.location="/admin/login"
+
+                            }
 
                         }
                     })
