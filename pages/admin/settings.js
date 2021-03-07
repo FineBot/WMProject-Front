@@ -25,16 +25,25 @@ export default class Persik extends React.Component {
             images:['/static/images/kisspng-check-mark-computer-icons-checkbox-1-5ab9367b448746.0700693515220875472807.png','/static/images/image_processing20200511-25230-hysdk9.png'],
             showmenu:false,
             parentClass:"adminparent",
+            mobile:false,
         }
 
 
     }
     componentDidMount() {
+        window.onresize=()=>{
+            this.init()
+
+            this.forceUpdate()
+        }
+        this.init()
+    }
+    init(){
         if(!isMobile()){
-            this.setState({showmenu:true})
+            this.setState({showmenu:true,parentClass:"adminparent",mobile:false})
 
         }else{
-            this.setState({parentClass:"Madminparent"})
+            this.setState({parentClass:"Madminparent",mobile:true,showmenu:false})
 
         }
     }
@@ -112,17 +121,38 @@ export default class Persik extends React.Component {
                                     <div>
                                         {this.state.done2?(
                                            <div style={{display:'flex'}}>
-                                              <table>
-                                                  <tr>
-                                                      <td valign="middle">
-                                                          <img src={this.state.images[1]} style={{marginLeft:"45px"}} width={"25px"}/>
-                                                      </td>
-                                                      <td valign="middle">
-                                                          <div style={{fontSize:"12px",color:"red",marginLeft:"5px",marginTop:"-5px"}}>{this.state.err}</div>
+                                               {this.state.mobile?(
+                                                   <table>
+                                                       <tr align="center">
+                                                           <td  valign="middle">
+                                                               {this.state.err==null?(
+                                                                   <img src={this.state.images[1]} style={{marginLeft:"45px"}} width={"25px"}/>
+                                                               ):(
+                                                                   <img src={this.state.images[1]} width={"25px"}/>
+                                                               )}
+                                                           </td>
 
-                                                      </td>
-                                                  </tr>
-                                              </table>
+                                                       </tr>
+                                                       <tr>
+                                                           <td align="center" valign="middle">
+                                                               <div style={{fontSize:"12px",color:"red",marginLeft:"5px",marginTop:"-5px"}}>{this.state.err}</div>
+
+                                                           </td>
+                                                       </tr>
+                                                   </table>
+                                               ):(
+                                                   <table>
+                                                       <tr>
+                                                           <td valign="middle">
+                                                               <img src={this.state.images[1]} style={{marginLeft:"45px"}} width={"25px"}/>
+                                                           </td>
+                                                           <td valign="middle">
+                                                               <div style={{fontSize:"12px",color:"red",marginLeft:"5px",marginTop:"-5px"}}>{this.state.err}</div>
+
+                                                           </td>
+                                                       </tr>
+                                                   </table>
+                                               )}
                                            </div>
 
                                             ):(

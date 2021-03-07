@@ -57,7 +57,7 @@ export default class Persik extends React.Component {
 
         if((documentHeight - clientHeight) <= scrollTop+500)
         {
-            if(!scrollWaiting){
+            if(!scrollWaiting&&!this.state.endLoad){
                 scrollWaiting=true
                 page++
                 this.setState({loading1:true})
@@ -88,6 +88,9 @@ export default class Persik extends React.Component {
             .then(data=>{
                 if("result" in data) {
                     var loadedData = this.state.data
+                    if(data['result'].length==0){
+                        this.setState({endLoad:true})
+                    }
                     for (var i = 0; i < data['result'].length; i++) {
                         loadedData.push(data['result'][i])
                     }

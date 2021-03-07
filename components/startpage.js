@@ -46,11 +46,13 @@ export default class Persik extends React.Component {
                     this.setState({data:data})
                 }else{
                     var loadedData=this.state.data
+                    if(data['result']['all'].length==0){
+                        this.setState({endLoad:true})
+                    }
                     for (var i =0;i<data['result']['all'].length;i++){
                         loadedData['result']['all'].push(data['result']['all'][i])
                     }
 
-                    console.log(loadedData)
                     this.setState({data:loadedData,loading:false})
 
                 }
@@ -87,7 +89,7 @@ export default class Persik extends React.Component {
 
         if((documentHeight - clientHeight) <= scrollTop+700)
         {
-            if(!scrollWaiting){
+            if(!scrollWaiting&&!this.state.endLoad){
                 scrollWaiting=true
                 page++
                 this.setState({loading:true})
@@ -228,7 +230,7 @@ export default class Persik extends React.Component {
 
                         {this.state.data!=null?(
                            <div>
-                               {this.state.data.result.all.length>0?(<h2 style={{color:"gray"}}>Остальные статьи</h2>
+                               {this.state.data.result.all.length>0?(<h2 style={{color:"gray",paddingLeft:"5px"}}>Остальные статьи</h2>
                                    ):(null)}
                                <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
                                    {this.state.data.result['all'].map((e,i)=>{

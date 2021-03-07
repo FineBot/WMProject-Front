@@ -91,6 +91,19 @@ a {
     background-color: #dbdb;
 
 }
+.tabsinSearch{
+    cursor: pointer;
+    background-color: #fff;
+    margin-bottom:10px;
+    border-radius:10px;
+    padding:5px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:pre-wrap;
+}
+.tabsinSearch:hover{
+    background-color: #dbdb;
+}
 .noselect {
     -moz-user-select: none;
     -webkit-user-select: none;

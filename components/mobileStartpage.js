@@ -48,12 +48,14 @@ export default class Persik extends React.Component {
                     this.setState({data:data})
                 }else{
                     var loadedData=this.state.data
+                    if(data['result']['all'].length==0){
+                        this.setState({endLoad:true})
+                    }
                     for (var i =0;i<data['result']['all'].length;i++){
                         loadedData['result']['all'].push(data['result']['all'][i])
                     }
 
-                    console.log(loadedData)
-                    this.setState({data:loadedData,loading:false})
+                    this.setState({data:loadedData,loading1:false})
 
                 }
 
@@ -86,13 +88,12 @@ export default class Persik extends React.Component {
         var scrollTop = window.pageYOffset ? window.pageYOffset : (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
 
-
         if((documentHeight - clientHeight) <= scrollTop+700)
         {
-            if(!scrollWaiting){
+            if(!scrollWaiting&&!this.state.endLoad){
                 scrollWaiting=true
                 page++
-                this.setState({loading:true})
+                this.setState({loading1:true})
                 this.load()
             }
 
@@ -213,7 +214,7 @@ export default class Persik extends React.Component {
                                                 <h3>Ничего не найдено</h3>
                                             </div>):(<div>
                                                 <InSearchNews data={this.state.data.result['all']}/>
-                                                {this.state.loading1?(<div className="loaderBottom">
+                                                {this.state.loading?(<div className="loaderBottom">
                                                     <div className="inner one"></div>
                                                     <div className="inner two"></div>
                                                     <div className="inner three"></div>
@@ -228,7 +229,7 @@ export default class Persik extends React.Component {
                         ):(null)}
 
                     </div>
-                    {this.state.loading?(<div className="loaderBottom">
+                    {this.state.loading1?(<div className="loaderBottom">
                         <div className="inner one"></div>
                         <div className="inner two"></div>
                         <div className="inner three"></div>

@@ -22,41 +22,39 @@ export default class Persik extends React.Component {
 
     }
     componentDidMount() {
-        var token=getCookie("token")
         const url =  window.location.href
         const id = url.split("/")[4]
-        if(token==undefined){
-            if(id!=="login"){
-                window.location="/admin/login"
 
+            var token=getCookie("token")
+
+            if(token==undefined){
+                if(id!=="login"){
+                    window.location="/admin/login"
+
+                }else{
+                    this.setState({token:token})
+                    this.setState({view:true})
+                }
             }else{
                 this.setState({token:token})
                 this.setState({view:true})
-            }
-        }else{
-            this.setState({token:token})
-            this.setState({view:true})
 
-            var check=getCookie("checkToken")
-            if(check==undefined){
-                const data1 = new URLSearchParams();
-                data1.append("token",token)
-                fetch('http://127.0.0.1:15234/checkToken',{method:"POST",body: data1})
-                    .then(response=>response.json())
-                    .then(data=>{
-                        if("result" in data){
-                            setCookie("checkToken","ok",{'max-age': 60*2})
-                        }else{
-                            setCookie("token",{"max-age":-1})
-                            if(id!=="login"){
-                                window.location="/admin/login"
+                    const data1 = new URLSearchParams();
+                    data1.append("token",token)
+                    fetch('http://127.0.0.1:15234/checkToken',{method:"POST",body: data1})
+                        .then(response=>response.json())
+                        .then(data=>{
+                            if("result" in data){
+                            }else{
+                                setCookie("token",{"max-age":-1})
+                                if(id!=="login"){
+                                    window.location="/admin/login"
+
+                                }
 
                             }
-
-                        }
-                    })
+                        })
             }
-        }
     }
     render() {
 

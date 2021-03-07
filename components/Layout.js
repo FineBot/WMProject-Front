@@ -76,6 +76,12 @@ img{
     max-height: 700px;
     width: 100%;
 }
+figure{
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 p{
     font-size: 17px;
     padding: 0px;

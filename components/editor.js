@@ -130,7 +130,11 @@ export default class RichEditorExample extends React.Component {
             this.setState({coverImage:reader.result})
         }
 
-        reader.readAsDataURL(file)
+        try{
+            reader.readAsDataURL(file)
+        }catch (err){
+            //f
+        }
 
 
     }

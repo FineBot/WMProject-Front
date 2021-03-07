@@ -82,7 +82,7 @@ export default class Persik extends React.Component {
                    }else{
                        return(
                            <a target={"_blank"} href={url+e['id']}>
-                               <div className={"tabs"} style={{marginBottom:"10px",borderRadius:"10px",padding:"5px"}}>
+                               <div className={"tabsinSearch"} >
                                    <div style={{display:"flex",height:"150px"}}>
                                        <div>
                                            <div style={{backgroundImage : "url("+e.coverImage+")",
