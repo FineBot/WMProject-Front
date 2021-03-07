@@ -203,44 +203,67 @@ export default class RichEditorExample extends React.Component {
         };
         if(this.state.edit){
             return(
-                <div onClick={()=>{
-                    this.setState({loading:true})
-                    const data1 = new URLSearchParams();
+                <div>
+                    <div onClick={()=>{
+                        this.setState({loading:true})
+                        const data1 = new URLSearchParams();
 
-                    var main=0
-                    if(document.getElementById("checkbox").checked){
-                        main=1
-                    }
+                        var main=0
+                        if(document.getElementById("checkbox").checked){
+                            main=1
+                        }
 
 
-                    data1.append("token",getCookie("token"))
-                    data1.append("title",document.getElementById("title").value)
-                    data1.append("content",stateToHTML(this.state.editorState.getCurrentContent(),options))
-                    data1.append("source","")
-                    data1.append("tags",JSON.stringify(this.state.chips))
-                    data1.append("description",document.getElementById("desc").value)
-                    if(this.state.coverImage!=null && this.state.coverImage!=this.props.data['result'][0].coverImage){
-                        data1.append("coverImage",this.state.coverImage)
+                        data1.append("token",getCookie("token"))
+                        data1.append("title",document.getElementById("title").value)
+                        data1.append("content",stateToHTML(this.state.editorState.getCurrentContent(),options))
+                        data1.append("source","")
+                        data1.append("tags",JSON.stringify(this.state.chips))
+                        data1.append("description",document.getElementById("desc").value)
+                        if(this.state.coverImage!=null && this.state.coverImage!=this.props.data['result'][0].coverImage){
+                            data1.append("coverImage",this.state.coverImage)
 
-                    }
-                    data1.append("main",main)
-                    data1.append("id",this.props.id)
-                    fetch('http://localhost:15234/editArticle',{method:"POST",body: data1}).then(result=>result.json())
-                        .then(data=>{
+                        }
+                        data1.append("main",main)
+                        data1.append("id",this.props.id)
+                        fetch('http://localhost:15234/editArticle',{method:"POST",body: data1}).then(result=>result.json())
+                            .then(data=>{
 
-                            if("error" in data){
-                                this.setStateError(data)
-                            }else{
-                                if(data['result']==1){
-                                    this.setState({done:true,textError:null})
+                                if("error" in data){
+                                    this.setStateError(data)
+                                }else{
+                                    if(data['result']==1){
+                                        this.setState({done:true,textError:null})
 
+                                    }
                                 }
-                            }
-                            this.setState({loading:false})
-                        })
+                                this.setState({loading:false})
+                            })
 
 
-                }} style={{width:"150px",verticalAlign:"center",height:"16px",marginBottom:"15px"}} className={"button2"}>Сохранить</div>
+                    }} style={{width:"150px",verticalAlign:"center",height:"16px",marginBottom:"15px"}} className={"button2"}>Сохранить</div><br/>
+                    <div onClick={()=>{
+                        this.setState({loading:true})
+                        const data1 = new URLSearchParams();
+                        data1.append("token",getCookie("token"))
+                        data1.append("id",this.props.id)
+                        fetch('http://localhost:15234/deleteArticle',{method:"POST",body: data1}).then(result=>result.json())
+                            .then(data=>{
+
+                                if("error" in data){
+                                    this.setStateError(data)
+                                }else{
+                                    if(data['result']==1){
+                                        this.setState({done:true,textError:null})
+                                        setTimeout(()=>window.location="/admin",2000)
+                                    }
+                                }
+                                this.setState({loading:false})
+                            })
+
+
+                    }} style={{width:"150px",verticalAlign:"center",height:"16px",marginBottom:"15px",backgroundColor:"#ff4040"}} className={"button2"}>Удалить статью</div>
+                </div>
             )
         }else{
             return (

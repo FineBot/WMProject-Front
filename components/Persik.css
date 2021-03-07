@@ -63,7 +63,23 @@ a {
 }
 .tabs{
     cursor: pointer;
+    padding: 3px    ;
     background-color: #fff;
+}
+.tabs:hover {
+    border-radius: 5px;
+    background-color: #dbdb;
+
+}
+
+.tabs1{
+    cursor: pointer;
+    background-color: #fff;
+}
+.tabs1:hover {
+    border-radius: 5px;
+    background-color: #dbdb;
+
 }
 .tags{
     white-space:nowrap;
@@ -86,11 +102,7 @@ a {
     color:black;
     height: 60px;
 }
-.tabs:hover {
-    border-radius: 5px;
-    background-color: #dbdb;
 
-}
 .tabsinSearch{
     cursor: pointer;
     background-color: #fff;

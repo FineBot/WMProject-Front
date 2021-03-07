@@ -52,7 +52,7 @@ export default class Persik extends React.Component {
                    if(isMobile()){
                        return(
                            <a target={"_blank"} href={url+e['id']}>
-                                   <div className={"tabs"} style={{marginTop:"5px",cursor:"pointer",borderRadius:"10px",width:"100%",marginBottom:"15px",
+                                   <div className={"tabs1"} style={{marginTop:"5px",cursor:"pointer",borderRadius:"10px",width:"100%",marginBottom:"15px",
                                        display:"inline-block"}}>
                                        <div style={{backgroundImage : "url("+e.coverImage+")",
                                            backgroundSize:"cover",
