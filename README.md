@@ -2,6 +2,8 @@
 
 ```git clone https://github.com/FineBot/Site.git```
 
+```cd Site```
+
 ```npm install```
 
 ## Для запуска продакшена
