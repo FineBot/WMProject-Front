@@ -105,7 +105,11 @@ export default class Persik extends React.Component {
                                                    </div>
                                                )
                                            })}
-                                           <div className={"inSearch"}>{e['description']}</div>
+                                           <div className="items-text">
+                                               {e['description']} FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF FFFFFFFFFFFFF FFFFFFFFFFFFF FFFFFFFFFFFF
+                                               FFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFFF
+                                               FFFFFFFFFFF FFFFFFFFFFFFFF FFFFFFFFFFFF FFFFFFFFFF
+                                           </div>
                                        </div>
                                    </div>
                                </div>
