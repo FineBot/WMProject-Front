@@ -106,9 +106,7 @@ export default class Persik extends React.Component {
                                                )
                                            })}
                                            <div className="items-text">
-                                               {e['description']} FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF FFFFFFFFFFFFF FFFFFFFFFFFFF FFFFFFFFFFFF
-                                               FFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFFF
-                                               FFFFFFFFFFF FFFFFFFFFFFFFF FFFFFFFFFFFF FFFFFFFFFF
+                                               {e['description']}
                                            </div>
                                        </div>
                                    </div>
