@@ -41,7 +41,7 @@ export default class Persik extends React.Component {
 
                     const data1 = new URLSearchParams();
                     data1.append("token",token)
-                    fetch('http://127.0.0.1:15234/checkToken',{method:"POST",body: data1})
+                    fetch(process.env.REACT_APP_API+'/checkToken',{method:"POST",body: data1})
                         .then(response=>response.json())
                         .then(data=>{
                             if("result" in data){

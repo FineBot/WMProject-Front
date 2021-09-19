@@ -43,7 +43,7 @@ Post.getInitialProps = async ({ req,query }) => {
     const ampUrl = url
     const data1 = new URLSearchParams();
     data1.append("id",id)
-    const res = await fetch('http://127.0.0.1:15234/getById',{method:"POST",body: data1})
+    const res = await fetch(process.env.REACT_APP_API+'/getById',{method:"POST",body: data1})
     const data = await res.json();
     if("error" in data){
         return { ampUrl,id,amp,data:"error" }

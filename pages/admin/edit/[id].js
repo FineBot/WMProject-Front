@@ -43,7 +43,7 @@ export default class Persik extends React.Component {
         const id = url.toString().split("/")[5]
         this.setState({id})
         data1.append("id",id)
-        fetch('http://127.0.0.1:15234/getById',{method:"POST",body: data1})
+        fetch(process.env.REACT_APP_API+'/getById',{method:"POST",body: data1})
             .then(data=>data.json())
             .then(data=>{
                 this.setState({data:data})

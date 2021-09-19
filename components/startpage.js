@@ -36,7 +36,7 @@ export default class Persik extends React.Component {
     load(){
         const data1 = new URLSearchParams();
         data1.append("page",page)
-        fetch("http://localhost:15234/getNews",{method:"POST",body:data1}).then(
+        fetch(process.env.REACT_APP_API+"/getNews",{method:"POST",body:data1}).then(
             (response)=>{
                 return response.json()
             }

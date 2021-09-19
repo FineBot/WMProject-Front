@@ -81,7 +81,7 @@ export default class Persik extends React.Component {
                                                 const data1 = new URLSearchParams();
                                                 data1.append("token",getCookie("token"))
                                                 data1.append("name",document.getElementById("nameInput").value)
-                                                fetch('http://127.0.0.1:15234/editName',{method:"POST",body: data1})
+                                                fetch(process.env.REACT_APP_API+'/editName',{method:"POST",body: data1})
                                                     .then(response=>response.json())
                                                     .then(data=>{
                                                         if(data['result']==1){
@@ -175,7 +175,7 @@ export default class Persik extends React.Component {
                                                     return
                                                 }
                                                 data1.append("pass",document.getElementById("pass1").value)
-                                                fetch('http://127.0.0.1:15234/editPassword',{method:"POST",body: data1})
+                                                fetch(process.env.REACT_APP_API+'/editPassword',{method:"POST",body: data1})
                                                     .then(response=>response.json())
                                                     .then(data=>{
                                                         if(data['result']==1){

@@ -32,7 +32,7 @@ export default class Persik extends React.Component {
         this.setState({loading:true})
         const data1 = new URLSearchParams();
         data1.append("keywords",this.state.input)
-        fetch('http://127.0.0.1:15234/search',{method:"POST",body: data1})
+        fetch(process.env.REACT_APP_API+'/search',{method:"POST",body: data1})
             .then(response=>response.json())
             .then(data=>{
                 if("result" in data){
@@ -83,7 +83,7 @@ export default class Persik extends React.Component {
         const data1 = new URLSearchParams();
         data1.append("keywords",this.state.input)
         data1.append("page",page)
-        fetch('http://127.0.0.1:15234/search',{method:"POST",body: data1})
+        fetch(process.env.REACT_APP_API+'/search',{method:"POST",body: data1})
             .then(response=>response.json())
             .then(data=>{
                 if("result" in data) {

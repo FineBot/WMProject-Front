@@ -60,7 +60,7 @@ export default class Persik extends React.Component {
             data1.append("login",log)
             data1.append("password",pass)
 
-            fetch('http://127.0.0.1:15234/login',{method:"POST",body: data1})
+            fetch(process.env.REACT_APP_API+'/login',{method:"POST",body: data1})
                 .then(response=>response.json())
                 .then(data=>{
                     if("result" in data){

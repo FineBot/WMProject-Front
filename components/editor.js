@@ -226,7 +226,7 @@ export default class RichEditorExample extends React.Component {
                         }
                         data1.append("main",main)
                         data1.append("id",this.props.id)
-                        fetch('http://localhost:15234/editArticle',{method:"POST",body: data1}).then(result=>result.json())
+                        fetch(process.env.REACT_APP_API+'/editArticle',{method:"POST",body: data1}).then(result=>result.json())
                             .then(data=>{
 
                                 if("error" in data){
@@ -247,7 +247,7 @@ export default class RichEditorExample extends React.Component {
                         const data1 = new URLSearchParams();
                         data1.append("token",getCookie("token"))
                         data1.append("id",this.props.id)
-                        fetch('http://localhost:15234/deleteArticle',{method:"POST",body: data1}).then(result=>result.json())
+                        fetch(process.env.REACT_APP_API+'/deleteArticle',{method:"POST",body: data1}).then(result=>result.json())
                             .then(data=>{
 
                                 if("error" in data){
@@ -285,7 +285,7 @@ export default class RichEditorExample extends React.Component {
                     data1.append("description",document.getElementById("desc").value)
                     data1.append("coverImage",this.state.coverImage)
                     data1.append("main",main)
-                    fetch('http://localhost:15234/createArticle',{method:"POST",body: data1}).then(result=>result.json())
+                    fetch(process.env.REACT_APP_API+'/createArticle',{method:"POST",body: data1}).then(result=>result.json())
                         .then(data=>{
 
                             if("error" in data){
