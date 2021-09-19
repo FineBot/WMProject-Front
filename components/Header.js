@@ -54,13 +54,13 @@ class Persikf extends React.Component {
 								</td>
 								<td width={28} align="right">
 									<a style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none"}} href="/search">
-										<Icon28SearchOutline style={{paddingRight:"10px"}} className={"iconColor"}/>
+										<Icon28SearchOutline title={"Поиск"} style={{paddingRight:"10px"}} className={"iconColor"}/>
 									</a>
 
 								</td>
-								<td width={28} align="right">
+								<td  width={28} align="right">
 
-									<a style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none"}} href="/admin">
+									<a title={"Зайти в админку"} style={{width:"35px",display:"flex",cursor:"pointer",textDecoration:"none"}} href="/admin">
 										<Icon28User className={"iconColor"}/>
 									</a>
 								</td>
