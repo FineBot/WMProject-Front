@@ -19,7 +19,7 @@ module.exports = (phase) => {
         REACT_APP_API:(() => {
             if (isDev) return "http://localhost:15234"
             else
-                return "http://194.58.92.14:15234"
+                return "https://testapi.finebot.site"
 
         })(),
         RESTURL_SPEAKERS: (() => {
