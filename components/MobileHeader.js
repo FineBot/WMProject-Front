@@ -38,7 +38,7 @@ class Persikf extends React.Component {
                                     </div>
                                 </td>
                                 <td align="right">
-                                    <img onClick={()=>this.setState({showmenu:!this.state.showmenu})} style={{width:"30px",display:"block",right:"0px",marginRight:"15px"}} src="/static/images/icons8-menu-96.png"/>
+                                    <img title={"Открыть меню"} onClick={()=>this.setState({showmenu:!this.state.showmenu})} style={{width:"30px",display:"block",right:"0px",marginRight:"15px"}} src="/static/images/icons8-menu-96.png"/>
                                 </td>
 
                             </tr>
