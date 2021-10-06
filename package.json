@@ -19,10 +19,12 @@
     "html-to-draftjs": "1.4.0",
     "image-to-base64": "^2.1.1",
     "isomorphic-unfetch": "^3.1.0",
+    "lottie-web": "^5.7.13",
     "next": "latest",
     "react": "^16.14.0",
     "react-chips": "^0.8.0",
     "react-dom": "^16.14.0",
+    "react-lottie": "^1.2.3",
     "react-reveal": "^1.2.2"
   },
   "license": "MIT"

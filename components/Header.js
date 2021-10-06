@@ -43,12 +43,16 @@ class Persikf extends React.Component {
 											Главное
 										</a>
 										<div style={{backgroundColor:"#dbdbdb",width:"1px",marginLeft:"5px",marginRight:"5px"}}></div>
-										<a href={"/tags/Животные"} className={"tabs"}>
-											Животные
+										<a href={"/about"} className={"tabs"}>
+											О нас
 										</a>
 										<div style={{backgroundColor:"#dbdbdb",width:"1px",marginLeft:"5px",marginRight:"5px"}}></div>
-										<a  href={"/tags/Политика"} className={"tabs"}>
-											Политика
+										<a href={"/projects"} className={"tabs"}>
+											Проекты
+										</a>
+										<div style={{backgroundColor:"#dbdbdb",width:"1px",marginLeft:"5px",marginRight:"5px"}}></div>
+										<a href={"/blog"} className={"tabs"}>
+											Блог
 										</a>
 									</div>
 								</td>
