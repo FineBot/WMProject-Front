@@ -44,6 +44,7 @@
 14.	Адаптация сайта для незрячих
 
 # Схема (дорабатывается)
+![Untitled-Map 1 (1)](https://user-images.githubusercontent.com/10910903/137014420-1c6367ae-2d49-4078-a673-8584b55c93e2.png)
 
-![Untitled-Map 1](https://user-images.githubusercontent.com/10910903/137014202-2c5ac078-c0c0-4d09-a4b2-dde318c2f08d.png)
+
 
