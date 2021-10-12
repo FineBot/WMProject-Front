@@ -44,7 +44,7 @@
 # Схема (дорабатывается)
 ![Untitled-Map 1 (1)](https://user-images.githubusercontent.com/10910903/137014420-1c6367ae-2d49-4078-a673-8584b55c93e2.png)
 
-# Дизайн
+# Дизайн (Дорабатывается)
 [Figma](https://www.figma.com/file/3sjtZJuHsUJBjyTSvffwrN/WMProject?node-id=0%3A1)
 
 
