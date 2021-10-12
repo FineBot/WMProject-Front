@@ -23,6 +23,6 @@
 Пароль: test
 ```
 
-Дизайн: https://www.figma.com/file/3sjtZJuHsUJBjyTSvffwrN/WMProject?node-id=0%3A1
+Дизайн: [Figma](https://www.figma.com/file/3sjtZJuHsUJBjyTSvffwrN/WMProject?node-id=0%3A1)
 
 Для работы необходимо сначала запустить сервер: https://github.com/FineBot/WMProject-Back
