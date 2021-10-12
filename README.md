@@ -42,7 +42,7 @@
 14.	Адаптация сайта для незрячих
 
 # Схема (дорабатывается)
-![Untitled-Map 1 (1)](https://user-images.githubusercontent.com/10910903/137014420-1c6367ae-2d49-4078-a673-8584b55c93e2.png)
+![Untitled-Map 1 (2)](https://user-images.githubusercontent.com/10910903/137015271-5ad0e7fd-3ed5-4509-b2f4-627b4aa222b4.png)
 
 # Дизайн (Дорабатывается)
 [Figma](https://www.figma.com/file/3sjtZJuHsUJBjyTSvffwrN/WMProject?node-id=0%3A1)
