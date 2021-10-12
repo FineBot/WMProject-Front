@@ -47,5 +47,9 @@
 # Дизайн (Дорабатывается)
 [Figma](https://www.figma.com/file/3sjtZJuHsUJBjyTSvffwrN/WMProject?node-id=0%3A1)
 
+# Цветовая схема
+![colors (1)](https://user-images.githubusercontent.com/10910903/137014743-3522896d-10a1-4090-8e1b-9e9241a4533b.png)
+
+
 
 
