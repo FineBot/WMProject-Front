@@ -2,7 +2,7 @@
 
 ```git clone https://github.com/FineBot/WMProject-Front.git```
 
-```cd Site```
+```cd WMProject-Front```
 
 ```npm install```
 
