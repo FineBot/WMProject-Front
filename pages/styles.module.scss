@@ -1,0 +1,28 @@
+.parent{
+  *{
+    font-family: "Roboto";
+    font-weight: 600;
+  }
+
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("/static/fonts/Roboto/Roboto-Light.ttf");
+  font-weight: 100;
+}
+@font-face {
+  font-family: Roboto;
+  src: url("/static/fonts/Roboto/Roboto-Bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Roboto;
+  src: url("/static/fonts/Roboto/Roboto-Regular.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: DaysOne;
+  src: url("/static/fonts/DaysOne/DaysOne-Regular.ttf");
+}
