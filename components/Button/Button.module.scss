@@ -6,17 +6,20 @@
   border-radius: 10px;
 
   cursor: pointer;
-}
-.parent:hover{
-  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-}
-.parent:active{
-  transform: translateY(2px);
+
+  &:hover{
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  }
+  &:active{
+    transform: translateY(2px);
+  }
 }
 
-.parent[type=blackButton]{
+.blackButton {
+  @extend .parent;
+
   background-color: black;
 
   font-family: Roboto;
