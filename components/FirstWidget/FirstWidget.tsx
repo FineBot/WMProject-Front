@@ -1,12 +1,17 @@
 import styles from './FirstWidge.module.scss'
 import {getHeader} from "../Header/Header";
+import Button from "../Button/Button";
 
 export default function (props) {
 
   return (
     <div className={styles.parent} id={props.name}>
-      <h1>Адаптируем сайты для людей, с особенностью зрения</h1>
+      <div>
+        <h1>Адаптируем сайты для людей, с особенностью зрения</h1>
+        <Button>Связаться</Button>
+      </div>
       <img src={"/static/images/blind.png"}/>
     </div>
   )
 }
+

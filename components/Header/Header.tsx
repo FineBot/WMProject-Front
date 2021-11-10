@@ -3,7 +3,6 @@ import Menu from './Menu'
 import lottie from "lottie-web";
 import toggleAnimation from '../AEAnimations/src/burgerMenu.json'
 import {useEffect, useState} from "react";
-import {use} from "ast-types";
 
 export const getHeader = () => {
   let elem = document.getElementById("header")

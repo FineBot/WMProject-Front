@@ -10,11 +10,24 @@
   margin-right: auto;
 
   @media(max-width: 1200px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     text-align: center;
+    img{
+      max-width: 400px;
+      max-height: 400px;
+    }
   }
 
+  & div:nth-child(1){
+    @media(max-width: 1200px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+  }
   & h1:nth-last-child(1n){
     max-width: 700px;
     font-size: 48px;
