@@ -3,7 +3,17 @@
     font-family: "Roboto";
     font-weight: 600;
   }
+  h1{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    display: flex;
+    align-items: center;
 
+    color: #000000;
+  }
 }
 
 @font-face {

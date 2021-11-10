@@ -1,0 +1,28 @@
+.parent{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .img{
+    background-color: rgb(175, 175, 175);
+    width: 400px;
+    height: 200px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
+  }
+  & div:nth-child(2){
+    width: 500px;
+    height: 300px;
+    margin-left: -20px;
+    margin-right: -20px;
+
+    z-index: 15;
+  }
+}
