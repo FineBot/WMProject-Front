@@ -3,13 +3,29 @@ import React from "react";
 
 export default function (props) {
 
-  // @ts-ignore
   const blackButton = (
-    <div style={props.style} className={styles.blackButton}>
+    <div style={props.style} className={styles.blackButton} onClick={(e) => props?.onClick(e)}>
       {props.children}
     </div>
   )
-  return (
-    blackButton
-  )
+
+  let button = null
+
+  switch (props.type) {
+    case 'more':
+      button = (
+        <div style={props.style} className={styles.moreButton} onClick={(e) => props?.onClick(e)}>
+          {props.children}
+        </div>
+      )
+      break;
+    case 'black':
+      button = blackButton
+      break;
+    default:
+      button = blackButton;
+      break;
+  }
+
+  return (button)
 }

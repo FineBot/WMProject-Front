@@ -30,3 +30,19 @@
 
   color: #FFFFFF;
 }
+
+.moreButton{
+  @extend .parent;
+  padding: 0px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #6678CC;
+  &:hover{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+}
