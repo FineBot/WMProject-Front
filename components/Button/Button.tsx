@@ -3,13 +3,19 @@ import React from "react";
 
 export default function (props) {
 
-  // @ts-ignore
   const blackButton = (
-    <div style={props.style} className={styles.blackButton}>
+    <div style={props.style} color={props.color} className={styles.blackButton} onClick={()=>{
+      if(props.onClick)
+        props.onClick()
+    }}>
       {props.children}
     </div>
   )
+  let button=blackButton
+
+
+
   return (
-    blackButton
+    button
   )
 }
