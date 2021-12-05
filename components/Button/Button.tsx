@@ -11,11 +11,24 @@ export default function (props) {
       {props.children}
     </div>
   )
-  let button=blackButton
 
+  let button = null
 
+  switch (props.type) {
+    case 'more':
+      button = (
+        <div style={props.style} className={styles.moreButton} onClick={(e) => props?.onClick(e)}>
+          {props.children}
+        </div>
+      )
+      break;
+    case 'black':
+      button = blackButton
+      break;
+    default:
+      button = blackButton;
+      break;
+  }
 
-  return (
-    button
-  )
+  return (button)
 }
