@@ -13,7 +13,7 @@ export default function (props) {
         <FirstWidget name={"widget0"}/>
         <About name={"widget1"}/>
         <Projects name={"widget2"}/>
-        <Blog name={"widget3"}/>
+        {/*<Blog name={"widget3"}/>*/}
     </div>
   )
 }
