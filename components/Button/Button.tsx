@@ -4,12 +4,12 @@ import React from "react";
 export default function (props) {
 
   const blackButton = (
-    <div style={props.style} color={props.color} className={styles.blackButton} onClick={()=>{
+    <button style={props.style} color={props.color} className={styles.blackButton} onClick={()=>{
       if(props.onClick)
         props.onClick()
     }}>
       {props.children}
-    </div>
+    </button>
   )
 
   let button = null
@@ -17,9 +17,9 @@ export default function (props) {
   switch (props.type) {
     case 'more':
       button = (
-        <div style={props.style} className={styles.moreButton} onClick={(e) => props?.onClick(e)}>
+        <button style={props.style} className={styles.moreButton} onClick={(e) => props?.onClick(e)}>
           {props.children}
-        </div>
+        </button>
       )
       break;
     case 'black':

@@ -10,11 +10,10 @@ export default function (props) {
       <div>
         <h1>Адаптируем сайты для людей, с особенностью зрения</h1>
         <Button onClick={()=>{
-          alert("f")
           Feedback()
         }}>Связаться</Button>
       </div>
-      <img src={"/static/images/blind.png"}/>
+      <img src={"/static/images/blind.png"} alt={"Рисунок улыбающегося человека с завязанными глазами и сердечками"}/>
     </div>
   )
 }

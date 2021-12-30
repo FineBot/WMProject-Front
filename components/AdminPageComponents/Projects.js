@@ -54,7 +54,7 @@ export default function Projects() {
                 <>
                   <div style={{display:"grid",justifyContent:"center"}}>
                     <div style={{maxWidth:"750px",display:"grid",rowGap:"10px",width:"50vw",minWidth:"270px"}}>
-                      <Input defaultValue={e.title} onChange={(e)=>{
+                      <Input id={"searchBlockInput"} defaultValue={e.title} onChange={(e)=>{
                         data.title=e
                       }} placeholder={"Название проекта"}/>
                       <TextArea style={{minHeight:"250px"}} defaultValue={e.desc} onChange={(e)=>{

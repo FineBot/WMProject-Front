@@ -34,16 +34,16 @@
 
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
-
+      justify-content: stretch;
       @media(max-width: 950px) {
         justify-content: center;
       }
-
       border: 1px solid #C4C4C4;
       box-sizing: border-box;
       border-radius: 32px;
 
+
+     
     }
   }
 }

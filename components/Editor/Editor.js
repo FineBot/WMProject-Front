@@ -116,7 +116,7 @@ export default class RichEditorExample extends React.Component {
     return (
       <div>
 
-        <div>
+        <div className={styles.parentContainer}>
 
           {this.props.onlyShow ? (
             <div >
@@ -131,7 +131,7 @@ export default class RichEditorExample extends React.Component {
           ) : (
             <>
               <div className={styles.toolsContainer}
-                   style={{position: "sticky", top: "10px", backgroundColor: "white"}}>
+                   style={{position: "sticky", top: "10px"}}>
                 <div>
                   <BlockStyleControls
                     editorState={editorState}

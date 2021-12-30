@@ -4,6 +4,8 @@
   width: fit-content;
   height: fit-content;
   border-radius: 10px;
+  outline: none;
+  border: 0px;
 
   cursor: pointer;
 
@@ -37,8 +39,10 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
+  background-color: transparent;
   line-height: 21px;
+  width: fit-content;
   color: #6678CC;
   &:hover{
     -webkit-box-shadow: none;

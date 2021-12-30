@@ -17,7 +17,9 @@ export const getHeader = () => {
 export default function (props) {
   const [open, setOpen] = useState(false)
 
-  const tabs = ["Главная", "О нас", "Проекты", "Блог"]
+  const tabs = ["Главная", "О нас", "Проекты",
+    //  "Блог"
+  ]
 
   useEffect(() => {
     if (!open) {
@@ -56,8 +58,8 @@ export default function (props) {
            className={styles.mobileButtonMenu}
       />
       <Menu
-            tabs={tabs} setOpenMenu={(e) => setOpen(e)}
-            open={open.toString()}/>
+        tabs={tabs} setOpenMenu={(e) => setOpen(e)}
+        open={open.toString()}/>
 
     </div>
   )

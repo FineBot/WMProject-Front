@@ -2,6 +2,7 @@ import styles from './Blog.module.scss'
 import Input from "../Input/Input";
 import {useState} from "react";
 import Button from "../Button/Button";
+import Tag from "../Tag/Tag";
 
 export default function (props) {
   const [searchText, setSearchText] = useState("")
@@ -58,8 +59,9 @@ export default function (props) {
                   setTagsSearchState(buff)
                 }}/>)
               })}
-              <div style={{width:"100%", display:"flex",justifyContent:"flex-end",marginTop:"15px",marginBottom:"5px"}}>
-                <Button type={"more"} onClick={()=>{
+              <div style={{width:"100%", display:"flex",justifyContent:"flex-end",marginTop:"15px",marginBottom:"5px",
+              backgroundColor:"transparent"}}>
+                <Button style={{backgroundColor:"transparent"}} type={"more"} onClick={()=>{
                   setSearchText("")
                   let buff=JSON.parse(JSON.stringify(tagsSearchState))
                   for(var i =0;i<buff.length;i++){
@@ -107,18 +109,4 @@ const BlogElement = () => {
   )
 }
 
-const Tag = (props) => {
 
-  return (
-    <div className={styles.tag} id={props.active?.toString()} onClick={props.onClick}>
-      {props.title}
-      <div className={styles.closeTag} onClick={(e)=>{
-        e.stopPropagation();
-        props?.onIconClick(e)
-      }}>
-        <div/>
-        <div/>
-      </div>
-    </div>
-  )
-}

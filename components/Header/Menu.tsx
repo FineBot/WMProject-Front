@@ -80,7 +80,7 @@ export default function (props) {
         {tabs.map((e, i) => {
           return (
             // @ts-ignore
-            <div active={(i === tabManager.current).toString()} id={"menuItemId" + i.toString()}
+            <div title={"Кнопка перехода к разделу"} active={(i === tabManager.current).toString()} id={"menuItemId" + i.toString()}
                  onMouseEnter={() => {
                    // lastI=JSON.parse(JSON.stringify(activeTab))
                    tabManager.current=i
