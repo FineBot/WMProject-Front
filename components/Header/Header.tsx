@@ -18,7 +18,7 @@ export default function (props) {
   const [open, setOpen] = useState(false)
 
   const tabs = ["Главная", "О нас", "Проекты",
-    //  "Блог"
+     "Блог"
   ]
 
   useEffect(() => {
