@@ -17,7 +17,8 @@ export const getHeader = () => {
 export default function (props) {
   const [open, setOpen] = useState(false)
 
-  const tabs = ["Главная", "О нас", "Проекты",
+  const tabs = ["Главная", "О нас", "Для кого"
+    // "Проекты",
      // "Блог"
   ]
 

@@ -19,8 +19,9 @@ function FeedbackComponent(){
         <div className={styles.closeButton} title={"Кнопка закрыть окно"} onClick={()=>{
           document.body.removeChild(inp)
         }}/>
-        <div>Email: <a></a></div>
-        <div>Телефон: <a></a></div>
+        <div>Telegram: <a href={"https://t.me/d_ts_622002"} target={"_blank"}>@d_ts_622002</a></div>
+        <div>Телефон: <a href={"tel:+79874339311"} target={""}>+7 (987) 433-93-11</a></div>
+        <div>Email: <a href={"mailto:request@wm-24.website"} target={""}>request@wm-24.website</a></div>
       </div>
     </div>
   )

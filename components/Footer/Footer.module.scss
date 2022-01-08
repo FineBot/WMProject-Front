@@ -1,0 +1,51 @@
+.parent{
+  background-color: #5EBFCB;
+  display: flex;
+  column-gap: 10vw;
+  align-items: center;
+  margin-top: 20vh;
+  height: 100%;
+  padding: 30px 0px;
+  justify-content: center;
+
+  img{
+    width: 400px;
+    height: 400px;
+    border-radius: 15px;
+  }
+  h1{
+    font-weight: bold;
+    color:white;
+  }
+  .linkObj{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    column-gap: 25px;
+    a{
+      color: white;
+      text-decoration: none;
+    }
+    img{
+      background-color: transparent;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    img{
+      width: 200px;
+      height: 200px;
+    }
+  }
+  @media (max-width: 550px) {
+    flex-direction: column-reverse;
+    .linkObj{
+      justify-content: center;
+    }
+  }
+}
+
+

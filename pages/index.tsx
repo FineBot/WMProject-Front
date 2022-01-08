@@ -4,6 +4,8 @@ import FirstWidget from "../components/FirstWidget/FirstWidget";
 import About from "../components/About/About";
 import Projects from "../components/Projects/Projects";
 import Blog from "../components/Blog/Blog";
+import Footer from "../components/Footer/Footer";
+import Auditory from "../components/Auditory/Auditory";
 
 export default function (props) {
 
@@ -12,8 +14,10 @@ export default function (props) {
       <Header/>
         <FirstWidget name={"widget0"}/>
         <About name={"widget1"}/>
-        <Projects name={"widget2"}/>
-        {/*<Blog name={"widget3"}/>*/}
+        <Auditory name={"widget2"}/>
+        {/*<Projects name={"widget3"}/>*/}
+        {/*<Blog name={"widget4"}/>*/}
+      <Footer/>
     </div>
   )
 }

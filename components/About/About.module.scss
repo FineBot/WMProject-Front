@@ -22,11 +22,42 @@
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 21px;
       text-align: center;
 
       color: #000000;
+    }
+
+    .about ~ span, .about *:nth-child(n) {
+      @extend .about;
+      text-align: left;
+      padding-top: 15px;
+      font-size: 16px;
+      max-width: 80vw;
+
+
+      & *:nth-child(n) {
+        @extend .about;
+        margin-top: -10px;
+        text-align: left;
+        font-size: 16px;
+        max-width: 80vw;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .about ~ span, .about *:nth-child(n) {
+        max-width: 70vw;
+
+        & *:nth-child(n) {
+          max-width: 70vw;
+        }
+      }
+    }
+
+    .about ~ span ol:nth-child(n) {
+      max-width: 1300px;
     }
 
     .content {
@@ -41,10 +72,8 @@
       border: 1px solid #C4C4C4;
       box-sizing: border-box;
       border-radius: 32px;
-
-
-     
     }
   }
 }
+
 

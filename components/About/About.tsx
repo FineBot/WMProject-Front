@@ -47,16 +47,13 @@ export default function (props) {
         <h1>О нас</h1>
         <div className={styles.contentParent}>
           <div className={styles.about}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis
-            cumque dolores ducimus eaque eius eligendi ex id, ipsa nihil numquam odio officia praesentium tempore totam
-            voluptates? Ad dolore doloremque et, ex explicabo illo porro ratione sapiente ullam voluptatem. Aut
-            cupiditate deserunt distinctio dolorum fuga fugit hic iure laudantium, magnam minus modi, odit repellendus
-            sunt tempore voluptas.
+            Мы обеспечиваем адаптацию веб сайтов и приложений для людей с особыми потребностями.
           </div>
-          <div className={styles.content}>
-            {data.map((e,i)=>{
 
-              return(
+          <div className={styles.content}>
+            {data.map((e, i) => {
+
+              return (
                 <AboutUser
                   index={i}
                   role={"Дизайнер"}
