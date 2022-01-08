@@ -17,7 +17,7 @@ export default function Footer(props){
           <a href={"https://t.me/d_ts_622002"} target={"_blank"}>@d_ts_622002</a>
         </div>
         <div className={styles.linkObj}>
-          <img src="/static/images/email.png" alt="Иконка Telegram"/>
+          <img src="/static/images/email.png" alt="Иконка Email"/>
           <a href={"mailto:request@wm-24.website"} target={""}>request@wm-24.website</a>
         </div>
       </div>

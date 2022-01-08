@@ -15,7 +15,7 @@ export default function (props) {
       img:"/static/images/avatar/ava2.png",
       role: "Научный руководитель"
     },
-  
+
     {
       fio: "Баикин Кирилл",
       img:"/static/images/avatar/ava5.png",
