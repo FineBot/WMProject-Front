@@ -5,40 +5,32 @@ export default function (props) {
 
   const data = [
     {
-      fio: "Константин Константинопольский",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu",
-      role: "Design"
+      fio: "Даниил Хачатуров",
+      desc: null,
+      img:"/static/images/avatar/ava4.png",
+      role: "Основатель и CEO"
     },
     {
-      fio: "Константин Константинопольский",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu",
-      role: "Design"
+      fio: "Гульшат Суханова",
+      img:"/static/images/avatar/ava2.png",
+      role: "Научный руководитель"
     },
     {
-      fio: "Константин Константинопольский",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu",
-      role: "Design"
+      fio: "Ринат Шайдуллин",
+      img:"/static/images/avatar/ava3.png",
+      role: "Технический руководитель"
     },
     {
-      fio: "Константин Константинопольский",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu",
-      role: "Design"
+      fio: "Валентина Вагарина",
+      img:"/static/images/avatar/ava1.png",
+      role: "Ассистент CEO"
     },
     {
-      fio: "Константин Константинопольский",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu",
-      role: "Design"
+      fio: "Баикин Кирилл",
+      img:"/static/images/avatar/ava5.png",
+      role: "Frontend разработчик"
     },
-    {
-      fio: "Константин Константинопольский",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu",
-      role: "Design"
-    },
-    {
-      fio: "Константин Константинопольский",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu",
-      role: "Design"
-    },
+
   ]
 
   return (
@@ -56,9 +48,10 @@ export default function (props) {
               return (
                 <AboutUser
                   index={i}
-                  role={"Дизайнер"}
-                  desc={"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias architecto, autem corporis cumque dolores ducimu"}
-                  fio={"Константин Константинопольский"}/>
+                  src={e.img}
+                  role={e.role}
+                  desc={e.desc}
+                  fio={e.fio}/>
               )
             })}
           </div>
