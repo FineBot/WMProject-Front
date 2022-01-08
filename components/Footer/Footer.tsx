@@ -7,7 +7,7 @@ export default function Footer(props){
     <div className={styles.parent}>
 
       <div>
-        <h1>Контакты</h1>
+        <h2>Контакты</h2>
         <div className={styles.linkObj}>
           <img src="/static/images/youtube.png" alt="Иконка YouTube"/>
           <a href="https://www.youtube.com/channel/UCXhnxNBgZ1_8jbOaPMeHAwQ" target={"_blank"}>YouTube</a>
