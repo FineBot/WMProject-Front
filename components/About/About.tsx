@@ -15,16 +15,7 @@ export default function (props) {
       img:"/static/images/avatar/ava2.png",
       role: "Научный руководитель"
     },
-    {
-      fio: "Ринат Шайдуллин",
-      img:"/static/images/avatar/ava3.png",
-      role: "Технический руководитель"
-    },
-    {
-      fio: "Валентина Вагарина",
-      img:"/static/images/avatar/ava1.png",
-      role: "Ассистент CEO"
-    },
+  
     {
       fio: "Баикин Кирилл",
       img:"/static/images/avatar/ava5.png",
