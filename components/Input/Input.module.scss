@@ -1,6 +1,6 @@
-.parent{
+.parent {
   width: 100%;
-  input{
+  input {
     background: rgba(196, 196, 196, 0.31);
     border-radius: 10px;
     border: rgba(173, 173, 173, 0.31) 2px solid;
@@ -13,9 +13,8 @@
 
     font-weight: 400;
 
-
-    &:focus{
-      border: 2px solid #5EBFCB;
+    &:focus {
+      border: 2px solid #5ebfcb;
     }
   }
 }

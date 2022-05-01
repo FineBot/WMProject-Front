@@ -4,9 +4,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write ./components ./pages ./public"
   },
   "dependencies": {
+    "@baikinkirill/prettier-config": "^1.0.4",
     "@draft-js-plugins/image": "^4.1.2",
     "@types/react": "^17.0.34",
     "@vkontakte/icons": "^1.134.0",

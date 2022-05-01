@@ -1,29 +1,41 @@
-import {EditorState, RichUtils, AtomicBlockUtils, ContentState, convertToRaw, convertFromRaw} from "draft-js";
-import {stateToHTML} from 'draft-js-export-html';
+import {
+  EditorState,
+  RichUtils,
+  AtomicBlockUtils,
+  ContentState,
+  convertToRaw,
+  convertFromRaw,
+} from "draft-js";
+import { stateToHTML } from "draft-js-export-html";
 import Editor from "draft-js-plugins-editor";
 import createImagePlugin from "draft-js-image-plugin";
 import * as React from "react";
 import fetch from "isomorphic-unfetch";
-import htmlToDraft from 'html-to-draftjs';
+import htmlToDraft from "html-to-draftjs";
 
-import styles from './Editor.module.css'
+import styles from "./Editor.module.css";
 
 const imagePlugin = createImagePlugin();
 const plugins = [imagePlugin];
 
-
 export default class RichEditorExample extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty(), chips: [], edit: false, coverImage: null};
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      chips: [],
+      edit: false,
+      coverImage: null,
+    };
 
     this.onChange = (editorState) => {
-
       // export state
       // console.log(JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent())))
-      if(this.props.onChange)
-        this.props.onChange(convertToRaw(this.state.editorState.getCurrentContent()))
-      this.setState({editorState, done: false})
+      if (this.props.onChange)
+        this.props.onChange(
+          convertToRaw(this.state.editorState.getCurrentContent())
+        );
+      this.setState({ editorState, done: false });
     };
 
     this.handleKeyCommand = (command) => this._handleKeyCommand(command);
@@ -32,26 +44,23 @@ export default class RichEditorExample extends React.Component {
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
   }
 
-
   componentDidMount() {
-
     if (this.props.firstState) {
-      try{
-
+      try {
         const blocksFromHTML = convertFromRaw(this.props.firstState);
-        this.setState({editorState: EditorState.createWithContent(blocksFromHTML)})
-      }catch (e){
-
-      }
+        this.setState({
+          editorState: EditorState.createWithContent(blocksFromHTML),
+        });
+      } catch (e) {}
     }
 
     var url = window.location;
-    const id = url.toString().split("/")[4]
-    this.setState({edit: true})
+    const id = url.toString().split("/")[4];
+    this.setState({ edit: true });
   }
 
   _handleKeyCommand(command) {
-    const {editorState} = this.state;
+    const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
       this.onChange(newState);
@@ -66,20 +75,12 @@ export default class RichEditorExample extends React.Component {
   }
 
   _toggleBlockType(blockType) {
-    this.onChange(
-      RichUtils.toggleBlockType(
-        this.state.editorState,
-        blockType
-      )
-    );
+    this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
   }
 
   _toggleInlineStyle(inlineStyle) {
     this.onChange(
-      RichUtils.toggleInlineStyle(
-        this.state.editorState,
-        inlineStyle
-      )
+      RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle)
     );
   }
 
@@ -90,36 +91,33 @@ export default class RichEditorExample extends React.Component {
     reader.onloadend = () => {
       this.setState({
         file: file,
-        imagePreviewUrl: reader.result
+        imagePreviewUrl: reader.result,
       });
-      this.handleClick(reader.result)
-      }
-    reader.readAsDataURL(file)
+      this.handleClick(reader.result);
+    };
+    reader.readAsDataURL(file);
   }
 
   checkEdit() {
-    this.setState({done: false})
+    this.setState({ done: false });
   }
 
   render() {
-    const {editorState} = this.state;
+    const { editorState } = this.state;
 
-
-    let className = 'RichEditor-editor';
+    let className = "RichEditor-editor";
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        className += ' RichEditor-hidePlaceholder';
+      if (contentState.getBlockMap().first().getType() !== "unstyled") {
+        className += " RichEditor-hidePlaceholder";
       }
     }
 
     return (
       <div>
-
         <div className={styles.parentContainer}>
-
           {this.props.onlyShow ? (
-            <div >
+            <div>
               <Editor
                 customStyleMap={styleMap}
                 editorState={editorState}
@@ -130,8 +128,10 @@ export default class RichEditorExample extends React.Component {
             </div>
           ) : (
             <>
-              <div className={styles.toolsContainer}
-                   style={{position: "sticky", top: "10px"}}>
+              <div
+                className={styles.toolsContainer}
+                style={{ position: "sticky", top: "10px" }}
+              >
                 <div>
                   <BlockStyleControls
                     editorState={editorState}
@@ -145,13 +145,18 @@ export default class RichEditorExample extends React.Component {
                 <div className={styles.imageEditor}>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>
-                      <i className="material-icons"><img src={"/static/images/copy.png"}/></i>
-                      <input name="photo" accept="image/*,image/jpeg" onChange={(e) => this.checkFile(e)}
-                             type={"file"}/>
+                      <i className="material-icons">
+                        <img src={"/static/images/copy.png"} />
+                      </i>
+                      <input
+                        name="photo"
+                        accept="image/*,image/jpeg"
+                        onChange={(e) => this.checkFile(e)}
+                        type={"file"}
+                      />
                     </label>
                   </div>
                 </div>
-
               </div>
               <div className={styles.editor} onClick={this.focus}>
                 <Editor
@@ -167,10 +172,7 @@ export default class RichEditorExample extends React.Component {
               </div>
             </>
           )}
-
-
         </div>
-
       </div>
     );
   }
@@ -183,23 +185,22 @@ export default class RichEditorExample extends React.Component {
   insertImage = (editorState, base64) => {
     const contentState = editorState.getCurrentContent();
     const contentStateWithEntity = contentState.createEntity(
-      'image',
-      'IMMUTABLE',
-      {src: base64},
+      "image",
+      "IMMUTABLE",
+      { src: base64 }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-    const newEditorState = EditorState.set(
-      editorState,
-      {currentContent: contentStateWithEntity},
-    );
-    return AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ');
+    const newEditorState = EditorState.set(editorState, {
+      currentContent: contentStateWithEntity,
+    });
+    return AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, " ");
   };
 }
 
 // Custom overrides for "code" style.
 const styleMap = {
   CODE: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
     fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
     fontSize: 16,
     padding: 2,
@@ -208,7 +209,7 @@ const styleMap = {
 
 function getBlockStyle(block) {
   switch (block.getType()) {
-    case 'blockquote':
+    case "blockquote":
       return styles.blockquote;
     default:
       return null;
@@ -225,33 +226,33 @@ class StyleButton extends React.Component {
   }
 
   render() {
-    let className = 'RichEditor-styleButton';
+    let className = "RichEditor-styleButton";
     if (this.props.active) {
       className = styles.RichEditorActiveButton;
     }
 
     return (
       <span className={className} onMouseDown={this.onToggle}>
-              {this.props.label}
-            </span>
+        {this.props.label}
+      </span>
     );
   }
 }
 
 const BLOCK_TYPES = [
-  {label: 'H1', style: 'header-one'},
-  {label: 'H2', style: 'header-two'},
-  {label: 'H3', style: 'header-three'},
-  {label: 'H4', style: 'header-four'},
-  {label: 'H5', style: 'header-five'},
-  {label: 'H6', style: 'header-six'},
-  {label: 'Blockquote', style: 'blockquote'},
-  {label: 'UL', style: 'unordered-list-item'},
-  {label: 'OL', style: 'ordered-list-item'},
+  { label: "H1", style: "header-one" },
+  { label: "H2", style: "header-two" },
+  { label: "H3", style: "header-three" },
+  { label: "H4", style: "header-four" },
+  { label: "H5", style: "header-five" },
+  { label: "H6", style: "header-six" },
+  { label: "Blockquote", style: "blockquote" },
+  { label: "UL", style: "unordered-list-item" },
+  { label: "OL", style: "ordered-list-item" },
 ];
 
 const BlockStyleControls = (props) => {
-  const {editorState} = props;
+  const { editorState } = props;
   const selection = editorState.getSelection();
   const blockType = editorState
     .getCurrentContent()
@@ -260,7 +261,7 @@ const BlockStyleControls = (props) => {
 
   return (
     <div className={styles.tools}>
-      {BLOCK_TYPES.map((type) =>
+      {BLOCK_TYPES.map((type) => (
         <StyleButton
           key={type.label}
           active={type.style === blockType}
@@ -268,23 +269,23 @@ const BlockStyleControls = (props) => {
           onToggle={props.onToggle}
           style={type.style}
         />
-      )}
+      ))}
     </div>
   );
 };
 
 var INLINE_STYLES = [
-  {label: 'Bold', style: 'BOLD'},
-  {label: 'Italic', style: 'ITALIC'},
-  {label: 'Underline', style: 'UNDERLINE'},
-  {label: 'Monospace', style: 'CODE'},
+  { label: "Bold", style: "BOLD" },
+  { label: "Italic", style: "ITALIC" },
+  { label: "Underline", style: "UNDERLINE" },
+  { label: "Monospace", style: "CODE" },
 ];
 
 const InlineStyleControls = (props) => {
   var currentStyle = props.editorState.getCurrentInlineStyle();
   return (
     <div className={styles.tools}>
-      {INLINE_STYLES.map(type =>
+      {INLINE_STYLES.map((type) => (
         <StyleButton
           key={type.label}
           active={currentStyle.has(type.style)}
@@ -292,7 +293,7 @@ const InlineStyleControls = (props) => {
           onToggle={props.onToggle}
           style={type.style}
         />
-      )}
+      ))}
     </div>
   );
 };

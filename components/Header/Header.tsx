@@ -1,44 +1,43 @@
-import styles from './Header.module.scss'
-import Menu from './Menu'
+import styles from "./Header.module.scss";
+import Menu from "./Menu";
 import lottie from "lottie-web";
-import toggleAnimation from '../AEAnimations/src/burgerMenu.json'
-import {useEffect, useState} from "react";
+import toggleAnimation from "../AEAnimations/src/burgerMenu.json";
+import { useEffect, useState } from "react";
 
 export const getHeader = () => {
-  let elem = document.getElementById("header")
+  let elem = document.getElementById("header");
   let data = {
     height: elem.offsetHeight,
     width: elem.offsetWidth,
-    elem
-  }
-  return data
-}
+    elem,
+  };
+  return data;
+};
 
 export default function (props) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  const tabs = ["Главная", "О нас", "Для кого"
+  const tabs = [
+    "Главная",
+    "О нас",
+    "Для кого",
     // "Проекты",
-     // "Блог"
-  ]
+    // "Блог"
+  ];
 
   useEffect(() => {
     if (!open) {
-      lottie.setDirection(-1, "menu")
-      lottie.play("menu")
-      document.body.style.overflowY = "auto"
-
+      lottie.setDirection(-1, "menu");
+      lottie.play("menu");
+      document.body.style.overflowY = "auto";
     } else {
-      lottie.setDirection(1, "menu")
-      lottie.play("menu")
-      document.body.style.overflowY = "hidden"
-
+      lottie.setDirection(1, "menu");
+      lottie.play("menu");
+      document.body.style.overflowY = "hidden";
     }
-  }, [open])
+  }, [open]);
 
   useEffect(() => {
-
-
     lottie.loadAnimation({
       container: document.getElementById("burgerMenu"),
       name: "menu",
@@ -46,25 +45,22 @@ export default function (props) {
       autoplay: false,
       loop: false,
     });
-
-  }, [])
-
+  }, []);
 
   return (
     <div className={styles.parent} id={"header"}>
-      <div onClick={() => {
-
-        setOpen(!open)
-      }} id={"burgerMenu"}
-           className={styles.mobileButtonMenu}
+      <div
+        onClick={() => {
+          setOpen(!open);
+        }}
+        id={"burgerMenu"}
+        className={styles.mobileButtonMenu}
       />
       <Menu
-        tabs={tabs} setOpenMenu={(e) => setOpen(e)}
-        open={open.toString()}/>
-
+        tabs={tabs}
+        setOpenMenu={(e) => setOpen(e)}
+        open={open.toString()}
+      />
     </div>
-  )
+  );
 }
-
-
-

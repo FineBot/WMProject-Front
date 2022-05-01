@@ -29,20 +29,19 @@
   margin: 0px;
 }
 
-@media(max-width: 600px) {
-  .popoutContent{
+@media (max-width: 600px) {
+  .popoutContent {
     min-width: 70vw;
   }
 }
 
-.closeButton{
+.closeButton {
   background-image: url("/static/images/icons8-close.svg");
   width: 16px;
   height: 16px;
   background-size: cover;
   position: absolute;
   right: 20px;
-  top:20px;
+  top: 20px;
   cursor: pointer;
 }
-

@@ -7,34 +7,33 @@
   width: 100%;
   height: 70px;
 
-
-  .mobileButtonMenu{
+  .mobileButtonMenu {
     width: 50px;
     height: 50px;
     display: none;
   }
 }
-.parent[onScroll=true]{
+.parent[onScroll="true"] {
   background-color: $headerBlue;
-  @media(min-width: 601px) {
-    .menuParent{
+  @media (min-width: 601px) {
+    .menuParent {
       margin-top: 3px;
       padding: 15px 20px;
     }
   }
 }
-.menuParent{
+.menuParent {
   transition: all 100ms;
   padding: 40px 90px;
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     padding: 15px 20px;
   }
 
-  .touchCloseHiddenPanel{
+  .touchCloseHiddenPanel {
     display: none;
   }
-  .menu{
+  .menu {
     margin-top: 7px;
     display: flex;
     align-items: flex-start;
@@ -43,23 +42,19 @@
     column-gap: 30px;
     font-size: 18px;
 
-
-    & div:nth-last-child(1n){
+    & div:nth-last-child(1n) {
       transition: all 100ms;
       cursor: pointer;
-
     }
-    & div:nth-last-child(1n)[active=true]{
+    & div:nth-last-child(1n)[active="true"] {
       color: $purple;
-
     }
-    & div:nth-last-child(1n):active{
+    & div:nth-last-child(1n):active {
       padding-top: 5px;
       margin-bottom: -5px;
-
     }
   }
-  .underline{
+  .underline {
     margin-top: 2px;
     transition: all 100ms;
     height: 0px;
@@ -69,37 +64,36 @@
   }
 }
 
-
 // mobile
 @media (max-width: 600px) {
-  .parent{
+  .parent {
     display: flex;
     padding: 0px 10px;
     align-items: center;
-    .mobileButtonMenu{
+    .mobileButtonMenu {
       display: block;
     }
   }
 
-  .menuParent{
+  .menuParent {
     opacity: 0;
     animation: hide 300ms;
     animation-fill-mode: forwards;
     position: absolute;
     padding: 0px;
-    width:100vw;
+    width: 100vw;
     margin-top: 176px;
 
-    .touchCloseHiddenPanel{
+    .touchCloseHiddenPanel {
       display: block;
     }
 
-    .menu{
+    .menu {
       justify-content: center;
       flex-direction: column;
       align-items: center;
       row-gap: 10px;
-      background-color: #FFF;
+      background-color: #fff;
 
       margin-left: -10px;
       padding: 15px 0px;
@@ -107,13 +101,12 @@
       -webkit-box-shadow: 0px 8px 8px 0px rgba(34, 60, 80, 0.2);
       -moz-box-shadow: 0px 8px 8px 0px rgba(34, 60, 80, 0.2);
       box-shadow: 0px 8px 8px 0px rgba(34, 60, 80, 0.2);
-
     }
-    .underline{
+    .underline {
       display: none;
     }
   }
-  .menuParent[name=true]{
+  .menuParent[name="true"] {
     animation: show 300ms;
     display: block;
     animation-fill-mode: forwards;
@@ -121,29 +114,26 @@
 }
 
 @keyframes show {
-  from{
+  from {
     opacity: 0;
     margin-left: -100vw;
   }
-  to{
+  to {
     opacity: 1;
     margin-left: 0px;
   }
 }
 
 @keyframes hide {
-  from{
+  from {
     opacity: 1;
     margin-left: 0px;
-
   }
-  to{
+  to {
     opacity: 0;
     margin-left: -100vw;
   }
-  100%{
+  100% {
     display: none;
   }
 }
-
-

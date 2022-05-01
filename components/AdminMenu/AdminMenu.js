@@ -1,13 +1,13 @@
-import styles from './AminMenu.module.css'
-import {useState} from "react";
+import styles from "./AminMenu.module.css";
+import { useState } from "react";
 
 export default function AdminMenu(props) {
   const menu = [
-    {title: "Разделы", content: ['Проекты', "О нас"]},
-    {title: "Блог", content: ['Создать статью']},
-  ]
+    { title: "Разделы", content: ["Проекты", "О нас"] },
+    { title: "Блог", content: ["Создать статью"] },
+  ];
 
-  const {activeTab, setActiveTab} = props.state
+  const { activeTab, setActiveTab } = props.state;
 
   return (
     <div className={styles.parent}>
@@ -20,21 +20,28 @@ export default function AdminMenu(props) {
         {menu.map((e, i) => {
           return (
             <div>
-              <div className={styles.menuItem}>
-                {e.title}
-              </div>
+              <div className={styles.menuItem}>{e.title}</div>
               {e.content.map((e, j) => {
-                return <div active={(activeTab.toString() === (i.toString()+j.toString())).toString()}
-                            onClick={() => {
-                              setActiveTab(i.toString()+j.toString())
-                              props.setOpen(false)
-                            }}
-                            className={styles.menuItemButton}>{e}</div>
+                return (
+                  <div
+                    active={(
+                      activeTab.toString() ===
+                      i.toString() + j.toString()
+                    ).toString()}
+                    onClick={() => {
+                      setActiveTab(i.toString() + j.toString());
+                      props.setOpen(false);
+                    }}
+                    className={styles.menuItemButton}
+                  >
+                    {e}
+                  </div>
+                );
               })}
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }

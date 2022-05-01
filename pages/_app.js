@@ -1,4 +1,4 @@
-export default function({Component, pageProps}) {
+export default function ({ Component, pageProps }) {
   return (
     <>
       <style jsx global>{`
@@ -8,6 +8,5 @@ export default function({Component, pageProps}) {
       `}</style>
       <Component {...pageProps} />
     </>
-  )
+  );
 }
-

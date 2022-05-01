@@ -10,26 +10,25 @@
   column-gap: 15px;
 }
 
-.gridParent{
+.gridParent {
   display: grid;
   row-gap: 15px;
   column-gap: 15px;
-  grid-template-columns: repeat(4,1fr);
-
+  grid-template-columns: repeat(4, 1fr);
 }
 .addButton {
   font-size: 16px;
   margin-left: 10px;
-  color: #6678CC;
+  color: #6678cc;
   font-weight: 800;
   font-family: Roboto;
 }
-.gridParent .firstContent{
+.gridParent .firstContent {
   display: flex;
   align-items: center;
   column-gap: 15px;
 }
-.avatar{
+.avatar {
   width: 56px;
   height: 56px;
   background-color: gray;
@@ -37,34 +36,31 @@
   flex: 0 0 auto;
 }
 
-  .desc{
-    flex: 1 1 auto;
-    color: rgba(128, 128, 128, 0.85);
-    max-width: calc(50vw - 350px);
+.desc {
+  flex: 1 1 auto;
+  color: rgba(128, 128, 128, 0.85);
+  max-width: calc(50vw - 350px);
 
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: keep-all;
-    line-break: auto;
-    hyphens: manual;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: keep-all;
+  line-break: auto;
+  hyphens: manual;
 
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+@media (max-width: 1650px) {
+  .gridParent {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  @media(max-width: 1650px) {
-    .gridParent{
-      grid-template-columns: repeat(2,1fr);
-
-    }
-
-    @media(max-width: 700px) {
-      .gridParent{
-        grid-template-columns: repeat(1,1fr);
-      }
+  @media (max-width: 700px) {
+    .gridParent {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
-
-
+}

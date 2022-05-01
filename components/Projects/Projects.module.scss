@@ -8,13 +8,12 @@
   display: block;
   position: relative;
 
-  .textParent{
-
+  .textParent {
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
 
-    h2{
+    h2 {
       font-family: Roboto;
       font-style: normal;
       font-weight: bold;
@@ -23,7 +22,7 @@
 
       color: #000000;
     }
-    div{
+    div {
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
@@ -32,8 +31,8 @@
 
       color: #000000;
     }
-    hr{
-      background: #E5E5E5;
+    hr {
+      background: #e5e5e5;
       margin: 30px;
     }
   }

@@ -1,4 +1,4 @@
-.parent{
+.parent {
   transition: all 100ms;
   padding: 17px 40px;
   width: fit-content;
@@ -9,12 +9,12 @@
 
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   }
-  &:active{
+  &:active {
     transform: translateY(2px);
   }
 }
@@ -30,10 +30,10 @@
   font-size: 14px;
   line-height: 16px;
 
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.moreButton{
+.moreButton {
   @extend .parent;
   padding: 0px;
   font-family: Roboto;
@@ -43,8 +43,8 @@
   background-color: transparent;
   line-height: 21px;
   width: fit-content;
-  color: #6678CC;
-  &:hover{
+  color: #6678cc;
+  &:hover {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;

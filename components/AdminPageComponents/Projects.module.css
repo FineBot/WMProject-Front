@@ -59,7 +59,7 @@
 .addButton {
   font-size: 16px;
   margin-left: 10px;
-  color: #6678CC;
+  color: #6678cc;
   font-weight: 800;
   font-family: Roboto;
 }
@@ -73,5 +73,3 @@
     max-width: calc(40vw - 70px);
   }
 }
-
-

@@ -1,5 +1,5 @@
-.parent{
-  background-color: #5EBFCB;
+.parent {
+  background-color: #5ebfcb;
   display: flex;
   column-gap: 10vw;
   align-items: center;
@@ -8,27 +8,27 @@
   padding: 30px 0px;
   justify-content: center;
 
-  img{
+  img {
     width: 400px;
     height: 400px;
     border-radius: 15px;
   }
-  h2{
+  h2 {
     font-weight: bold;
-    color:white;
+    color: white;
     font-size: 35px;
   }
-  .linkObj{
+  .linkObj {
     display: flex;
     width: fit-content;
     align-items: center;
     justify-content: center;
     column-gap: 25px;
-    a{
+    a {
       color: white;
       text-decoration: none;
     }
-    img{
+    img {
       background-color: transparent;
       width: 32px;
       height: 32px;
@@ -36,17 +36,15 @@
   }
 
   @media (max-width: 720px) {
-    img{
+    img {
       width: 200px;
       height: 200px;
     }
   }
   @media (max-width: 550px) {
     flex-direction: column-reverse;
-    .linkObj{
+    .linkObj {
       justify-content: center;
     }
   }
 }
-
-
